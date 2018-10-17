@@ -10,11 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_17_153023) do
+ActiveRecord::Schema.define(version: 2018_10_17_205306) do
+
+  create_table "book_clubs", force: :cascade do |t|
+    t.string "name"
+    t.integer "up_vote_id"
+    t.integer "book_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "authors"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "up_votes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "site_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -24,6 +39,7 @@ ActiveRecord::Schema.define(version: 2018_10_17_153023) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "book_id"
   end
 
 end

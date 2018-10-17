@@ -1,0 +1,2 @@
+class UpVote < ApplicationRecord
+end
