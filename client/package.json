@@ -8,6 +8,7 @@
     "immutable": "^3.8.2",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.11",
+    "prop-types": "^15.6.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-redux": "^5.0.7",

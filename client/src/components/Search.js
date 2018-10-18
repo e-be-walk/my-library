@@ -1,34 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { getBooks } from '../actions/Search';
+import { isEmpty } from 'immutable';
+import { Books } from '../containers/Books';
 
 
 
 export const Search = (props) => {
+  debugger
   const { getBooks, books, query } = props
-  const mappedBooks = !books.isEmpty () ? books.map((book, index) => {
-    const id = book.get('id')
-    const title = book.getIn(['volumeInfo', 'title'])
-    const authors = book.getIn(['volumeInfo', 'authors'])
-    const image = book.getIn(['volumeInfo', 'imageLinks', 'smallThumbnail'])
-    const link = book.getIn(['volumeInfo', 'previewLink'])
-    const mappedAuthors = authors ? authors.map((author, i) => {
-      return <span key={i}>{author} </span>
-    }) : null
 
-    return (
-      <div key={index} className='search'>
-        <div className='row'>
-          <div className='col-md-4'>
-            <a href={link}><img src={image} alt={title} /></a>
-          </div>
-          <div className='col-md-8'>
-            <h2 className='title'>{title}</h2>
-            <div>{mappedAuthors}</div>
-          </div>
-        </div>
-      </div>
-    )
-  }) : <h2>No books found</h2>
+
+
+
 
   return (
     <div className='wrapper'>
@@ -48,13 +32,19 @@ export const Search = (props) => {
                 value={query} onChange={({target}) => getBooks(target.value)} />
             </div>
             <div>
-              {mappedBooks}
+        
             </div>
           </div>
         </div>
       </section>
     </div>
   )
+}
+
+Search.propTypes = {
+  getBooks: PropTypes.func,
+  books: PropTypes.any,
+  query: PropTypes.string
 }
 
 export default Search

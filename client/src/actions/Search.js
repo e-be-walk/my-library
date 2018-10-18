@@ -21,6 +21,7 @@ export function setQuery (query) {
 }
 
 export const getBooks = (query) => {
+  debugger
   return (dispatch, getState) => {
     dispatch(setQuery(query))
     !isEmpty(query) ? fetch('https://www.googleapis.com/books/v1/volumes?q=' + query + '&key=' + apiKey)
