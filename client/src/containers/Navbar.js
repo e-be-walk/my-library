@@ -8,7 +8,7 @@ class Navbar extends Component {
     //const isAuthenticated = this.props.session.auth.isAuthenticated
     return(
       <div className="main-navbar">
-        <Link className="navbar-links" to="/">Home</Link>
+        <Link className="navbar-links" to="/search">Search</Link>
         <Link className="navbar-links" to="/signup">Sign up</Link>
         <Link className="navbar-links" to="/login">Login</Link>
         <Link className="navbar-links" to="/logout">Logout</Link>

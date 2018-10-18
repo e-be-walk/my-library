@@ -1,7 +1,7 @@
 import { fromJS } from 'immutable';
 import fetch from 'isomorphic-fetch';
 import { isEmpty } from 'lodash';
-import { apiKey } from 'auth/apiKey';
+import { apiKey } from '../auth/apiKey';
 
 export const SET_BOOKS = 'SET_BOOKS'
 export const SET_QUERY = 'SET_QUERY'
@@ -29,7 +29,7 @@ export const getBooks = (query) => {
         throw new Error('Error. Try your query again.')
       }
       return response.json()
-    }).then(book => {
+    }).then(books => {
       dispatch(setBooks(books.items))
     }).catch(error => {
       console.log(error)

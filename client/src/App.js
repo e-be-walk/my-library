@@ -8,6 +8,8 @@ import SignupForm from './components/Signup';
 import LoginForm from './components/Login';
 import Logout from './components/Logout';
 
+import Search from './components/Search';
+
 import { connect } from 'react-redux';
 
 class App extends Component {
@@ -22,6 +24,7 @@ class App extends Component {
         <Route path="/signup" component={ SignupForm } />
         <Route path="/login" component={ LoginForm } />
         <Route path="/logout" component={ Logout } />
+        <Route path="/search" component={ Search } />
       </div>
       </Router>
     );
