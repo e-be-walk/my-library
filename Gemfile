@@ -29,7 +29,16 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 
+# gem paperclip for attaching images
+gem 'paperclip', '~> 5.2.0'
+#dual server
 gem 'foreman', '~> 0.82.0'
+#assets
+gem 'coffee-rails', '~> 4.2'
+#navigation
+gem 'turbolinks', '~> 5'
+#build JSON
+gem 'jbuilder', '~> 2.5'
 gem 'active_model_serializers'
 gem 'pry'
 
