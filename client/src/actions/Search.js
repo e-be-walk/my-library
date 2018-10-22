@@ -1,3 +1,4 @@
+import React, { Component } from 'react';
 import { fromJS } from 'immutable';
 import fetch from 'isomorphic-fetch';
 import { isEmpty } from 'lodash';
@@ -21,7 +22,6 @@ export function setQuery (query) {
 }
 
 export const getBooks = (query) => {
-  debugger
   return (dispatch, getState) => {
     dispatch(setQuery(query))
     !isEmpty(query) ? fetch('https://www.googleapis.com/books/v1/volumes?q=' + query + '&key=' + apiKey)
@@ -52,7 +52,6 @@ const ACTION_HANDLERS = {
 }
 
 const initialState = fromJS({})
-
 export default (state = initialState, action) => {
   const handler = ACTION_HANDLERS[action.type]
   return handler? handler(state,action) : state
