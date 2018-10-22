@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getBooks } from '../actions/Search';
+import { newSearch } from '../actions/NewSearch';
 import { fromJS } from 'immutable';
 import Search from '../components/Search';
 
@@ -12,8 +12,8 @@ const mapStateToProps = (state) => {
   console.log('cannot .get from undefined')
   return {
 
-    //books: search.get('books', fromJS([])),
-    //query: search.get('query', '')
+    books: search.get('books', fromJS([])),
+    query: search.get('query', '')
   }
 }
 

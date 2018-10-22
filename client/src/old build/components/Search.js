@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { isEmpty } from 'immutable';
-import { getBooks, books, query } from '../actions/Search';
+import { newSearch } from '../actions/NewSearch';
 
 
 
 export const Search = (props) => {
-  const { getBooks, books, query } = props
+  const { newSearch, books, query } = props
   const mappedBooks = books.map((book, index) => {
   const id = book.get('id')
   const title = book.getIn(['volumeInfo', 'title'])

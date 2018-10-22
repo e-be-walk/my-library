@@ -28,21 +28,25 @@ export function newSearch(query){
     fetch(`${BASE_URL}+${searchTerm}`, {mode: 'cors'})
 
     .then((response) => {
-      //return response.json()
-      return response.text();
+      return response.json();
+      //return response.text();
     })
-    .then(function(text) {
-      console.log('Request successful', text);
-    });
+    //.then(function(myJson) {
+    //  console.log('Request successful', (JSON.stringify(myJson)));
+    //})
 
     //.then(console.log(searchTerm))
     //.then(response => response.json())
     //.then(console.log(response))
-    //.then(books =>
-    //  dispatch({ type: 'SET_BOOKS', payload: books})
-    //);
+    .then(books =>
+      dispatch(setBooks(books.items))
+    );
 
   }
+}
+
+export const actions = {
+  newSearch
 }
 
 const ACTION_HANDLERS = {

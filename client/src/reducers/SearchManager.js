@@ -10,10 +10,7 @@ export default function searchManager(
     switch(action.type){
       case "SEARCHING...":
         return {...state, loading: true}
-      case "SET_BOOKS":
-        const books = (state, { payload: books })  => {
-          return state.set('books', fromJS(books))
-        }
+
     default:
       return state
     }
