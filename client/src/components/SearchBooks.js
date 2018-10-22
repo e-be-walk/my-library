@@ -47,7 +47,7 @@ class SearchBooks extends Component {
           <input type="submit" value="Search" />
         </form>
         <div>
-        {SearchResult}
+        <SearchResult />
         </div>
         </div>
       )
