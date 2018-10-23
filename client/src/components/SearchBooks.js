@@ -41,8 +41,8 @@ class SearchBooks extends Component {
 
       NewSearch.search(value, (books) => {
         this.setState({
-          books: books
-          //books: books.slice(0, MATCHING_ITEM_LIMIT),
+          //books: books
+          books: books.slice(0, MATCHING_ITEM_LIMIT),
         });
       });
     }
@@ -74,7 +74,8 @@ class SearchBooks extends Component {
       key={idx}
       onClick={() => this.props.onBookClick(book)}
       >
-      <td>{book.volumeInfo.title}</td>
+      <td><img src={book.volumeInfo.imageLinks.thumbnail}/></td>
+      <td><a href={book.volumeInfo.link}>{book.volumeInfo.title}</a></td>
       <td>{book.volumeInfo.authors}</td>
       <td>{book.volumeInfo.description}</td>
       </tr>
@@ -85,7 +86,7 @@ class SearchBooks extends Component {
         <table className='ui selectable structured large table'>
           <thead>
             <tr>
-              <th colSpan='5'>
+              <th >
                 <div className='ui fluid search'>
                   <input
                   className='prompt'
@@ -104,7 +105,8 @@ class SearchBooks extends Component {
               </th>
             </tr>
             <tr>
-              <th className='eight wide'>Title</th>
+              <th >Image</th>
+              <th>Title</th>
               <th>Authors</th>
               <th> Description</th>
             </tr>
