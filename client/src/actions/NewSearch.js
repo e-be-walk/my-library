@@ -1,67 +1,48 @@
-import { fromJS } from 'immutable';
+//import { fromJS } from 'immutable';
 import fetch from 'isomorphic-fetch';
 
-//export const SET_BOOKS = 'SET_BOOKS'
-//export const SET_QUERY = 'SET_QUERY'
 
-//export function setBooks (value) {
-//  return {
-//    type: SET_BOOKS,
-//    payload: value
-//  }
-//}
+function search(query, cb) {
+  //debugger
+  return fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`, {
+    //dataType: "json",
+    //accept: 'application/json',
+    method: 'get',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    success: function(response) {
+      console.log(response)
+    }
+  })
 
-//export function setQuery (query) {
-//  return {
-//    type: SET_QUERY,
-//    payload: query
-//  }
-//}
-
-export function newSearch(query){
-  const searchTerm = query
-  const BASE_URL = 'https://www.googleapis.com/books/v1/volumes?q='
-
-  return (dispatch, getState) => {
-    //dispatch(setQuery(query))
-    //debugger
-    fetch(`${BASE_URL}+${searchTerm}`, {mode: 'cors'})
-
-    .then((response) => {
-      return response.json();
-      //return response.text();
-    })
-    .then(function(myJson) {
-      console.log('Request successful', (JSON.stringify(myJson)));
-    })
-
-    //.then(console.log(searchTerm))
-    //.then(response => response.json())
-    //.then(console.log(response))
-    //.then(books =>
-    //  dispatch(setBooks(books.items))
-    //);
-    .then(books =>
-      dispatch({type: "SEARCH_RESULTS", payload: books}))
-
-  }
+  //.then(checkStatus)
+  .then(parseJSON)
+  //.then(console.log(response))
+  .then((responseJson) => {
+    console.log(responseJson.items);
+    return responseJson.items;
+    //this.setState({ books: responseJson.items})
+  })
+  .then(cb);
 }
 
-//export const actions = {
-//  newSearch
-//}
+//checkStatus currently does not work
+function checkStatus(response) {
+  if (response.status >= 200 && response.status < 300) {
+    return response.items;
+  }
+  const error = new Error(`HTTP Error ${response.statusText}`);
+  error.status = response.statusText;
+  error.response = response;
+  console.log(error);
+  throw error;
+}
 
-//const ACTION_HANDLERS = {
-//  [SET_BOOKS]: (state, {payload: books}) => {
-//    return state.set('books', fromJS(books))
-//  },
-//  [SET_QUERY]: (state, {payload: query}) => {
-//    return state.set('query', fromJS(query))
-//  }
-//}
+function parseJSON(response) {
+  return response.json();
+  //return console.log(response.json())
+}
 
-//const initialState = fromJS({})
-//export default (state = initialState, action) => {
-//  const handler = ACTION_HANDLERS[action.type]
-//  return handler? handler(state,action) : state
-//}
+const NewSearch = { search };
+export default NewSearch;

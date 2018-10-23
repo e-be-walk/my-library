@@ -1,54 +1,121 @@
+import react from 'react';
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { newSearch } from '../actions/NewSearch';
-import { setBooks } from '../actions/NewSearch';
-import SearchResult from './SearchResult'
+//import { connect } from 'react-redux';
+import NewSearch from '../actions/NewSearch';
+
+const MATCHING_ITEM_LIMIT = 25;
 
 class SearchBooks extends Component {
 
-  constructor(props){
-    super(props);
-    this.state = {
-      query: '',
-      books: []
+  constructor(props) {
+      super(props);
+      this.state = {
+        books: [],
+        showRemoveIcon: false,
+        searchValue: '',
+      };
+
+      this.handleSearchChange = this.handleSearchChange.bind(this);
     }
-  }
 
-  handleSubmit = (event) => {
-    //debugger
-    event.preventDefault();
-    //this.props.history.push("/")
-    this.props.newSearch(this.state.query)
-  }
-
-  handleChange = (e) => {
+  handleSearchChange = (e) => {
     e.preventDefault();
+    let value = e.target.value;
+
+    if (this._isMounted) {
+      this.setState({
+        searchValue: value,
+        [e.target.name]: e.target.value,
+      });
+    }
+
+    if (value === '') {
+      this.setState({
+        books: [],
+        showRemoveIcon: false,
+      });
+    } else {
+      this.setState({
+        showRemoveIcon: true,
+      });
+
+      NewSearch.search(value, (books) => {
+        this.setState({
+          books: books
+          //books: books.slice(0, MATCHING_ITEM_LIMIT),
+        });
+      });
+    }
+  };
+
+  handleSearchCancel = () => {
     this.setState({
-      [e.target.name]: e.target.value,
+      books: [],
+      showRemoveIcon: false,
+      searchValue: '',
     });
+  };
+
+  componentDidMount() {
+    this._isMounted = true
   }
 
-
-  render(){
-
-    return(
-      <div className="bookform">
-        <h2>Search for a Book:</h2>
-        <hr></hr>
-        <form onSubmit={this.handleSubmit}>
-          Keyword, Author, or Title: <input onChange={this.handleChange} type="text" name="query"/><br></br>
-          <input type="submit" value="Search" />
-        </form>
-        <div>
-
-        </div>
-        </div>
-      )
+  componentWillUnmount() {
+    this._isMounted = false
   }
+
+  render() {
+    const { showRemoveIcon, books } = this.state;
+    const removeIconStyle = showRemoveIcon ? {} : { visibility: 'hidden'};
+
+    const bookRows = books.map((book, idx) =>(
+      /*need to fix onBookClick below*/
+      <tr
+      key={idx}
+      onClick={() => this.props.onBookClick(book)}
+      >
+      <td>{book.volumeInfo.title}</td>
+      <td>{book.volumeInfo.authors}</td>
+      <td>{book.volumeInfo.description}</td>
+      </tr>
+    ));
+
+    return (
+      <div id='book-search'>
+        <table className='ui selectable structured large table'>
+          <thead>
+            <tr>
+              <th colSpan='5'>
+                <div className='ui fluid search'>
+                  <input
+                  className='prompt'
+                  type='text'
+                  placeholder='Search books...'
+                  value={this.state.searchValue}
+                  onChange={this.handleSearchChange}
+                  />
+                  <i className='search icon' />
+                </div>
+                <i
+                className='remove icon'
+                onClick={this.handleSearchCancel}
+                style={removeIconStyle}
+                />
+              </th>
+            </tr>
+            <tr>
+              <th className='eight wide'>Title</th>
+              <th>Authors</th>
+              <th> Description</th>
+            </tr>
+          </thead>
+        <tbody>
+          {bookRows}
+        </tbody>
+      </table>
+    </div>
+  );
+ }
 }
-//searchResult appears to need to connect via mapStateToProps
-const mapStateToProps = (state) => {
-  return { books: state.books};
-};
 
-export default connect(mapStateToProps, { newSearch })(SearchBooks);
+export default SearchBooks;
