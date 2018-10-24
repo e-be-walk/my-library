@@ -69,7 +69,7 @@ class SearchBooks extends Component {
     const removeIconStyle = showRemoveIcon ? {} : { visibility: 'hidden'};
 
     const bookRows = books.map((book, idx) =>(
-      /*need to fix onBookClick below*/
+      /*need to fix onBookClick below
       <tr
       key={idx}
       onClick={() => this.props.onBookClick(book)}
@@ -78,16 +78,28 @@ class SearchBooks extends Component {
       <td><a href={book.volumeInfo.link}>{book.volumeInfo.title}</a></td>
       <td>{book.volumeInfo.authors}</td>
       <td>{book.volumeInfo.description}</td>
-      </tr>
+      </tr>*/
+      <div className='row' key={idx}>
+      <div className='col-md-4'>
+      <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title}/>
+      </div>
+      <div className='col-md-8'>
+      <h1><a href={book.volumeInfo.link}>{book.volumeInfo.title}</a></h1>
+      <h1>{book.volumeInfo.authors}</h1>
+      <p>{book.volumeInfo.description}</p><br></br>
+      </div>
+      </div>
     ));
 
     return (
       <div id='book-search'>
-        <table className='ui selectable structured large table'>
-          <thead>
-            <tr>
-              <th >
-                <div className='ui fluid search'>
+
+                <div className='my-4'>
+                  <div className='row'>
+                    <div className='col-md-12'>
+                      <h1>Books Search API</h1>
+                    </div>
+                  </div>
                   <input
                   className='prompt'
                   type='text'
@@ -102,20 +114,12 @@ class SearchBooks extends Component {
                 onClick={this.handleSearchCancel}
                 style={removeIconStyle}
                 />
-              </th>
-            </tr>
-            <tr>
-              <th >Image</th>
-              <th>Title</th>
-              <th>Authors</th>
-              <th> Description</th>
-            </tr>
-          </thead>
-        <tbody>
+
+              <h2>Results:</h2>
+          <div>
           {bookRows}
-        </tbody>
-      </table>
-    </div>
+          </div>
+          </div>
   );
  }
 }
