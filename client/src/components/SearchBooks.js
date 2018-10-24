@@ -13,6 +13,7 @@ class SearchBooks extends Component {
         books: [],
         showRemoveIcon: false,
         searchValue: '',
+        selectedBooks: [],
       };
 
       this.handleSearchChange = this.handleSearchChange.bind(this);
@@ -56,6 +57,11 @@ class SearchBooks extends Component {
     });
   };
 
+  addBook = (book) => {
+    const newBooks = this.state.selectedBooks.concat(book);
+    this.setState({ selectedBooks: newBooks })
+  }
+
   componentDidMount() {
     this._isMounted = true
   }
@@ -69,25 +75,17 @@ class SearchBooks extends Component {
     const removeIconStyle = showRemoveIcon ? {} : { visibility: 'hidden'};
 
     const bookRows = books.map((book, idx) =>(
-      /*need to fix onBookClick below
-      <tr
-      key={idx}
-      onClick={() => this.props.onBookClick(book)}
-      >
-      <td><img src={book.volumeInfo.imageLinks.thumbnail}/></td>
-      <td><a href={book.volumeInfo.link}>{book.volumeInfo.title}</a></td>
-      <td>{book.volumeInfo.authors}</td>
-      <td>{book.volumeInfo.description}</td>
-      </tr>*/
-      <div className='row' key={idx}>
-      <div className='col-md-4'>
-      <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title}/>
-      </div>
-      <div className='col-md-8'>
-      <h1><a href={book.volumeInfo.link}>{book.volumeInfo.title}</a></h1>
-      <h1>{book.volumeInfo.authors}</h1>
-      <p>{book.volumeInfo.description}</p><br></br>
-      </div>
+
+      <div className='row' key={idx} >
+        <div className='col-md-4'>
+          <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title}/>
+        </div>
+        <div className='col-md-8'>
+          <h3><a href={book.volumeInfo.link}>{book.volumeInfo.title}</a></h3>
+          <h3>{book.volumeInfo.authors}</h3>
+          <p>{book.volumeInfo.description}</p><br></br>
+          <button onClick={this.addBook} type='submit'>Add this book to your library</button>
+        </div>
       </div>
     ));
 
@@ -97,13 +95,13 @@ class SearchBooks extends Component {
                 <div className='my-4'>
                   <div className='row'>
                     <div className='col-md-12'>
-                      <h1>Books Search API</h1>
+                      <h2>Search for Books:</h2>
                     </div>
                   </div>
                   <input
                   className='prompt'
                   type='text'
-                  placeholder='Search books...'
+                  placeholder='Search...'
                   value={this.state.searchValue}
                   onChange={this.handleSearchChange}
                   />

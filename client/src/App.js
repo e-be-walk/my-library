@@ -12,7 +12,26 @@ import SearchBooks from './components/SearchBooks';
 import { connect } from 'react-redux';
 
 class App extends Component {
+
   render() {
+    const isAuthenticated = this.props.session.auth.isAuthenticated;
+    const currentUser = this.props.session.current_user;
+
+    const userRoutes = (
+      <div className='app container'>
+        <Route path="/logout" component={ Logout } />
+        <Route path="/search" component={ SearchBooks } />
+      </div>
+    )
+
+    const guestRoutes = (
+      <div className='app container'>
+        <Route path="/signup" component={ SignupForm } />
+        <Route path="/login" component={ LoginForm } />
+        <Route path="/search" component={ SearchBooks } />
+      </div>
+    )
+
     return (
       <Router>
       <div className="App">
@@ -20,10 +39,8 @@ class App extends Component {
           <h1 className="App-title">Welcome to MyLibrary.</h1>
           <Navbar />
         </header>
-        <Route path="/signup" component={ SignupForm } />
-        <Route path="/login" component={ LoginForm } />
-        <Route path="/logout" component={ Logout } />
-        <Route path="/search" component={ SearchBooks } />
+
+          { isAuthenticated ? userRoutes : guestRoutes }
       </div>
       </Router>
     );

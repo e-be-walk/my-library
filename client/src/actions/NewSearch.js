@@ -3,10 +3,7 @@ import fetch from 'isomorphic-fetch';
 
 
 function search(query, cb) {
-  //debugger
   return fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`, {
-    //dataType: "json",
-    //accept: 'application/json',
     method: 'get',
     headers: {
       'Content-Type': 'application/json'
@@ -18,11 +15,9 @@ function search(query, cb) {
 
   //.then(checkStatus)
   .then(parseJSON)
-  //.then(console.log(response))
   .then((responseJson) => {
     console.log(responseJson.items);
     return responseJson.items;
-    //this.setState({ books: responseJson.items})
   })
   .then(cb);
 }
@@ -41,7 +36,6 @@ function checkStatus(response) {
 
 function parseJSON(response) {
   return response.json();
-  //return console.log(response.json())
 }
 
 const NewSearch = { search };
