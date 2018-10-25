@@ -2,6 +2,7 @@ import react from 'react';
 import React, { Component } from 'react';
 //import { connect } from 'react-redux';
 import NewSearch from '../actions/NewSearch';
+//import Image from 'react-graceful-image';
 
 const MATCHING_ITEM_LIMIT = 25;
 
@@ -10,10 +11,15 @@ class SearchBooks extends Component {
   constructor(props) {
       super(props);
       this.state = {
-        books: [],
+        books: [{
+          volumeInfo: {
+            imageLinks: '',
+          }
+        }],
         showRemoveIcon: false,
         searchValue: '',
         selectedBooks: [],
+        error: null,
       };
 
       this.handleSearchChange = this.handleSearchChange.bind(this);
@@ -62,6 +68,10 @@ class SearchBooks extends Component {
     this.setState({ selectedBooks: newBooks })
   }
 
+  defaultImage(ev){
+    ev.target.src = '../images/missing.png'
+  }
+
   componentDidMount() {
     this._isMounted = true
   }
@@ -74,17 +84,24 @@ class SearchBooks extends Component {
     const { showRemoveIcon, books } = this.state;
     const removeIconStyle = showRemoveIcon ? {} : { visibility: 'hidden'};
 
+    //userFunctions = addBook
+
     const bookRows = books.map((book, idx) =>(
+
 
       <div className='row' key={idx} >
         <div className='col-md-4'>
-          <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title}/>
+          <img
+          onError={ this.defaultImage }
+          src={book.volumeInfo.imageLinks.thumbnail}
+          alt=""
+          />
         </div>
         <div className='col-md-8'>
           <h3><a href={book.volumeInfo.link}>{book.volumeInfo.title}</a></h3>
           <h3>{book.volumeInfo.authors}</h3>
           <p>{book.volumeInfo.description}</p><br></br>
-          <button onClick={this.addBook} type='submit'>Add this book to your library</button>
+          <button onClick={this.addBook} type='submit'>Add to your library</button>
         </div>
       </div>
     ));

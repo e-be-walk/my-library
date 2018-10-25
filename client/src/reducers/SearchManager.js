@@ -9,11 +9,9 @@ export default function searchManager(
     switch(action.type){
       case "SEARCHING...":
         return {...state, loading: true}
-    switch(action.type){
       case "SEARCH_RESULTS":
         return {...state, loading: false}
-    }
-    default:
-      return state
+      default:
+        return state
     }
   }
