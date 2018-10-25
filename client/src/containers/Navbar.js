@@ -9,18 +9,18 @@ class Navbar extends Component {
     const isAuthenticated = this.props.session.auth.isAuthenticated
 
     const userLinks = (
-      <div className="main-navbar">
-        <Link className="navbar-links" to="/search">Search  </Link>
-        <Link className="navbar-links" to="/search">*Library*  </Link>
-        <Link className="navbar-links" to="/logout">Logout  </Link>
+      <div className="nav fixed-top">
+        <Link className="nav-link" to="/search">Search  </Link>
+        <Link className="nav-link" to="/search">*Library*  </Link>
+        <Link className="nav-link" to="/logout">Logout  </Link>
       </div>
     )
 
     const guestLinks = (
-      <div className="main-navbar">
-        <Link className="navbar-links" to="/search">Search  </Link>
-        <Link className="navbar-links" to="/signup">Sign up  </Link>
-        <Link className="navbar-links" to="/login">Login  </Link>
+      <div className="nav fixed-top">
+        <Link className="nav-link" to="/search">Search  </Link>
+        <Link className="nav-link" to="/signup">Sign up  </Link>
+        <Link className="nav-link" to="/login">Login  </Link>
       </div>
     )
     return(

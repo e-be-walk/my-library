@@ -11,11 +11,7 @@ class SearchBooks extends Component {
   constructor(props) {
       super(props);
       this.state = {
-        books: [{
-          volumeInfo: {
-            imageLinks: '',
-          }
-        }],
+        books: [],
         showRemoveIcon: false,
         searchValue: '',
         selectedBooks: [],
@@ -66,6 +62,7 @@ class SearchBooks extends Component {
   addBook = (book) => {
     const newBooks = this.state.selectedBooks.concat(book);
     this.setState({ selectedBooks: newBooks })
+    return console.log(newBooks)
   }
 
   defaultImage(ev){
@@ -83,19 +80,22 @@ class SearchBooks extends Component {
   render() {
     const { showRemoveIcon, books } = this.state;
     const removeIconStyle = showRemoveIcon ? {} : { visibility: 'hidden'};
-
+    //var image = books.map((book, idx) =>(
+      //if (book.volumeInfo.includes(imageLinks)) {
+      //  <img src={books.volumeInfo.imageLinks.thumbnail} alt="" />
+      //} else {
+      //  <img src={'../images/missing.png'} alt="Image Missing"/>
+      //}
+      //book.volumeInfo.includes(imageLinks) ?
+      //<img src={books.volumeInfo.imageLinks.thumbnail} alt="" /> : <img src={'../images/missing.png'} alt="Image Missing"/>
+    //));
     //userFunctions = addBook
 
     const bookRows = books.map((book, idx) =>(
 
-
       <div className='row' key={idx} >
         <div className='col-md-4'>
-          <img
-          onError={ this.defaultImage }
-          src={book.volumeInfo.imageLinks.thumbnail}
-          alt=""
-          />
+
         </div>
         <div className='col-md-8'>
           <h3><a href={book.volumeInfo.link}>{book.volumeInfo.title}</a></h3>
@@ -130,7 +130,7 @@ class SearchBooks extends Component {
                 style={removeIconStyle}
                 />
 
-              <h2>Results:</h2>
+            
           <div>
           {bookRows}
           </div>
