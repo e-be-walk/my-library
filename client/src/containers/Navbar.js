@@ -9,7 +9,7 @@ class Navbar extends Component {
     const isAuthenticated = this.props.session.auth.isAuthenticated
 
     const userLinks = (
-      <div className="nav fixed-top">
+      <div className="nav fixed-top container">
         <Link className="nav-link" to="/search">Search  </Link>
         <Link className="nav-link" to="/search">*Library*  </Link>
         <Link className="nav-link" to="/logout">Logout  </Link>
@@ -17,7 +17,7 @@ class Navbar extends Component {
     )
 
     const guestLinks = (
-      <div className="nav fixed-top">
+      <div className="nav fixed-top container">
         <Link className="nav-link" to="/search">Search  </Link>
         <Link className="nav-link" to="/signup">Sign up  </Link>
         <Link className="nav-link" to="/login">Login  </Link>
