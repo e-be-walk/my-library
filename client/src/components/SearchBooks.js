@@ -94,11 +94,17 @@ class SearchBooks extends Component {
     const bookRows = books.map((book, idx) =>(
 
 
-        <div className='col-lg-4 col-md-6 my-4' key={idx}>
-          <div className='card h-100'>
-          <h3><a href={book.volumeInfo.link}>{book.volumeInfo.title}</a></h3>
-          <h3>{book.volumeInfo.authors}</h3>
-          <p>{book.volumeInfo.description}</p><br></br>
+        <div className='col-3 my-4' key={idx}>
+          <div className='card'>
+            <div className='card-title'>
+              <h3><a href={book.volumeInfo.link}>{book.volumeInfo.title}</a></h3>
+            </div>
+            <div className='card-authors'>
+              <h3>{book.volumeInfo.authors}</h3>
+            </div>
+            <div className='scroll-box'>
+              <p>{book.volumeInfo.description}</p><br></br>
+            </div>
           <button onClick={this.addBook} type='submit'>Add to your library</button>
           </div>
         </div>
@@ -131,9 +137,11 @@ class SearchBooks extends Component {
 
 
           <div>
-          {bookRows}
+            <div className='row'>
+              {bookRows}
+            </div>
           </div>
-          </div>
+        </div>
   );
  }
 }

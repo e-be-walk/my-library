@@ -59,6 +59,10 @@ h2 {
   font-size: 3em;
 }
 
+h3 {
+  font-size: 16px;
+}
+
 p {
   font-family: 'Roboto', sans-serif;
 }
@@ -71,7 +75,7 @@ a {
 }
 
 a:hover {
-  color: #0056b3;
+  color: #334d00;
   text-decoration: underline;
 }
 
@@ -97,7 +101,7 @@ img {
 }
 
 .nav-link {
-  color: #b3ff1a;
+  color: #aaff00;
   font-size: 1.5em;
   display: block;
   padding: 0.5rem 1rem;
@@ -132,7 +136,7 @@ img {
   margin-left: -15px;
 }
 
-.col, .col-auto, .col-md-4, .col-md-6, .col-md-8, .col-md-12, .col-lg-4{
+.col, .col-auto, .col-3, .col-md-4, .col-md-6, .col-md-8, .col-md-12, .col-lg-4{
   position: relative;
   width: 100%;
   min-height: 1px;
@@ -153,6 +157,12 @@ img {
   flex: 0 0 auto;
   width: auto;
   max-width: none;
+}
+
+.col-3 {
+  -ms-flex: 0 0 25%;
+  flex: 0 0 25%;
+  max-width: 25%;
 }
 
 .col-md-4 {
@@ -204,6 +214,16 @@ img {
   border-radius: 0.25rem;
 }
 
+.card-title {
+  height: 5em;
+  overflow: scroll;
+}
+
+.card-authors {
+  height: 3em;
+  overflow: scroll;
+}
+
 .card-body {
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
@@ -214,6 +234,10 @@ img {
   height: 100% !important;
 }
 
+.scroll-box {
+  height: 10em;
+  overflow: scroll;
+}
 
 .ui.selection.dropdown > .search.icon,
 .ui.selection.dropdown > .delete.icon,
