@@ -2,6 +2,7 @@ import react from 'react';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import NewSearch from '../actions/NewSearch';
+import AddBook from '../actions/AddBook';
 //import Image from 'react-graceful-image';
 
 const MATCHING_ITEM_LIMIT = 8;
@@ -60,19 +61,22 @@ class SearchBooks extends Component {
   };
 
   addBook = (book) => {
-    const newBooks = this.state.selectedBooks.concat(book);
+    const newBook = this.state.selectedBooks.concat(book);
     const currentUser = this.props.session.auth.current_user;
 
     this.setState({
-      selectedBooks: newBooks,
+      selectedBooks: newBook,
       userId: currentUser,
     })
-    return console.log(newBooks)
-    //need to connect a way to post info and pass to user books 
-  }
-
-  defaultImage(ev){
-    ev.target.src = '../images/missing.png'
+    return console.log(newBook)
+    //need to connect a way to post info and pass to user books
+    AddBook.addUserBook(newBook => {
+      this.setState({
+        //books: books
+        selectedBooks: newBook,
+        userId: currentUser,
+      });
+    });
   }
 
   componentDidMount() {
