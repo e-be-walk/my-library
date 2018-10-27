@@ -97,7 +97,7 @@ class SearchBooks extends Component {
     //userFunctions = addBook
 
     const bookRows = books.map((book, idx) =>(
-        <div className='col-3 my-4'>
+        <div className='col-3 my-4' key={idx} userId={this.props.userId}>
           <div className='card'>
             <div className='card-title'>
               <h3><a href={book.volumeInfo.previewLink}>{book.volumeInfo.title}</a></h3>

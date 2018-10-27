@@ -5,6 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Book.create([{title: 'War and Peace', authors: 'Leo Tolstoy', description: 'An incredibly long, incredibly descriptive novel about freezing during a war in Russia', link: 'https://books.google.com/books?id=SEkEAAAAYAAJ', user_id: '1'} ])
 
-
-User.create([{email: 'cat@cat.com', password: 'cat'}, {email: 'george@george.com', password: 'george'}, , {email: 'erin@erin.com', password: 'erin'}])
+User.create([{email: 'cat@cat.com', password: 'cat'}, {email: 'george@george.com', password: 'george'}, {email: 'erin@erin.com', password: 'erin'}])
