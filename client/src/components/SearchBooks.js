@@ -68,6 +68,7 @@ class SearchBooks extends Component {
       userId: currentUser,
     })
     return console.log(newBooks)
+    //need to connect a way to post info and pass to user books 
   }
 
   defaultImage(ev){
@@ -97,7 +98,7 @@ class SearchBooks extends Component {
     //userFunctions = addBook
 
     const bookRows = books.map((book, idx) =>(
-        <div className='col-3 my-4' key={idx} userId={this.props.userId}>
+        <div className='col-3 my-4' key={idx}>
           <div className='card'>
             <div className='card-title'>
               <h3><a href={book.volumeInfo.previewLink}>{book.volumeInfo.title}</a></h3>
@@ -108,7 +109,7 @@ class SearchBooks extends Component {
             <div className='scroll-box'>
               <p>{book.volumeInfo.description}</p><br></br>
             </div>
-          <button onClick={this.addBook} type='submit'>Add to your library</button>
+          <button onClick={() => this.addBook(book)} type='submit'>Add to your library</button>
           </div>
         </div>
 
