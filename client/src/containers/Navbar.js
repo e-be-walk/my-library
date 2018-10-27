@@ -7,11 +7,12 @@ class Navbar extends Component {
   render() {
 
     const isAuthenticated = this.props.session.auth.isAuthenticated
+    const currentUser = this.props.session.auth.userId;
 
     const userLinks = (
       <div className="nav fixed-top container">
         <Link className="nav-link" to="/search">Search  </Link>
-        <Link className="nav-link" to="/search">*Library*  </Link>
+        <Link className="nav-link" to="/library">MyLibrary  </Link>
         <Link className="nav-link" to="/logout">Logout  </Link>
       </div>
     )

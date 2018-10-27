@@ -1,10 +1,10 @@
 import react from 'react';
 import React, { Component } from 'react';
-//import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import NewSearch from '../actions/NewSearch';
 //import Image from 'react-graceful-image';
 
-const MATCHING_ITEM_LIMIT = 25;
+const MATCHING_ITEM_LIMIT = 8;
 
 class SearchBooks extends Component {
 
@@ -15,7 +15,7 @@ class SearchBooks extends Component {
         showRemoveIcon: false,
         searchValue: '',
         selectedBooks: [],
-        error: null,
+        userId: '',
       };
 
       this.handleSearchChange = this.handleSearchChange.bind(this);
@@ -61,7 +61,12 @@ class SearchBooks extends Component {
 
   addBook = (book) => {
     const newBooks = this.state.selectedBooks.concat(book);
-    this.setState({ selectedBooks: newBooks })
+    const currentUser = this.props.session.auth.current_user;
+
+    this.setState({
+      selectedBooks: newBooks,
+      userId: currentUser,
+    })
     return console.log(newBooks)
   }
 
@@ -92,12 +97,10 @@ class SearchBooks extends Component {
     //userFunctions = addBook
 
     const bookRows = books.map((book, idx) =>(
-
-
-        <div className='col-3 my-4' key={idx}>
+        <div className='col-3 my-4'>
           <div className='card'>
             <div className='card-title'>
-              <h3><a href={book.volumeInfo.link}>{book.volumeInfo.title}</a></h3>
+              <h3><a href={book.volumeInfo.previewLink}>{book.volumeInfo.title}</a></h3>
             </div>
             <div className='card-authors'>
               <h3>{book.volumeInfo.authors}</h3>
@@ -146,4 +149,11 @@ class SearchBooks extends Component {
  }
 }
 
-export default SearchBooks;
+const mapStateToProps = state => {
+  return {
+    session: state.session,
+    selectedBooks: state.selectedBooks,
+  }
+}
+
+export default connect(mapStateToProps)(SearchBooks);

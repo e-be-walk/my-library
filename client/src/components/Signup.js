@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
-import { login } from '../actions/Sessions';
+import { connect } from 'react-redux';
+import { signup } from '../actions/Sessions';
 
 class SignupForm extends Component {
 
-  state = {
-    email: '',
-    password: ''
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: '',
+    }
+    //this.handleSignup = this.handleSignup.bind(this);
   }
 
   handleSubmit = (event) => {
-    //debugger
     event.preventDefault();
+    this.props.history.push("/search")
+    this.props.signup(this.state)
   }
 
   handleChange = (e) => {
@@ -18,6 +24,7 @@ class SignupForm extends Component {
     this.setState({
       [e.target.name]: e.target.value
     })
+
   }
 
   render(){
@@ -28,6 +35,7 @@ class SignupForm extends Component {
         <form onSubmit={this.handleSubmit}>
           Email: <input onChange={this.handleChange} type="text" name="email"/><br></br>
           Password: <input onChange={this.handleChange} type="password" name="password"/><br></br>
+
           <input type="submit" value="Sign Up" />
         </form>
         </div>
@@ -35,4 +43,4 @@ class SignupForm extends Component {
   }
 }
 
-export default SignupForm;
+export default connect(null, { signup })(SignupForm);

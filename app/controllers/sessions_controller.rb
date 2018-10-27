@@ -16,6 +16,10 @@ class SessionsController < ApplicationController
 
   private
 
+  #def current_user
+  #  @user = User.find(params[:id])
+  #end
+
   def user_params
     params.require(:user).permit(:email, :password)
   end

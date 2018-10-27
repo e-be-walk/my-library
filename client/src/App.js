@@ -8,7 +8,8 @@ import LoginForm from './components/Login';
 import Logout from './components/Logout';
 
 import SearchBooks from './components/SearchBooks';
-import ErrorBoundary from './components/ErrorBoundary'
+import UserLibrary from './components/UserLibrary';
+//import ErrorBoundary from './components/ErrorBoundary'
 
 import { connect } from 'react-redux';
 
@@ -21,9 +22,8 @@ class App extends Component {
     const userRoutes = (
       <div className='app container'>
         <Route path="/logout" component={ Logout } />
-        <ErrorBoundary>
         <Route path="/search" component={ SearchBooks } />
-        </ErrorBoundary>
+        <Route path="/library" component={ UserLibrary } />
       </div>
     )
 
@@ -31,9 +31,13 @@ class App extends Component {
       <div className='app container'>
         <Route path="/signup" component={ SignupForm } />
         <Route path="/login" component={ LoginForm } />
-
         <Route path="/search" component={ SearchBooks } />
-      
+      </div>
+    )
+
+    const showUserLibrary = () => (
+      <div className='app-content'>
+        <UserLibrary />
       </div>
     )
 

@@ -1,7 +1,6 @@
-# README
+# MyLibrary
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This web application was designed to allow a user to organize their library and connect with interested readers. This application was built with React and Ruby on Rails. 
 
 Things you may want to cover:
 

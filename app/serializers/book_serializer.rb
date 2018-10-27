@@ -1,3 +1,3 @@
 class BookSerializer < ActiveModel::Serializer
-  attributes :id, :user_id, :book_club_id, :title, :authors
+  attributes :id, :user_id, :book_club_id, :title, :authors, :description
 end

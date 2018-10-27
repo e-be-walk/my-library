@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
+  before_action :current_user
   before_action :set_book, only: [:show, :update, :destroy]
-
+  skip_before_action :current_user, only: [:show]
   # GET /books
   def index
     @books = Book.all
@@ -46,6 +47,6 @@ class BooksController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def book_params
-      params.require(:book).permit(:id, :title, :authors)
+      params.require(:book).permit(:id, :userId, :title, :authors)
     end
 end

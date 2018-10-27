@@ -13,12 +13,20 @@ class UsersController < ApplicationController
     render json: @user
   end
 
+  def new
+    @user = User.new
+  end
+
   # POST /users
   def create
     @user = User.new(user_params)
+    session[:user_id] = @user.id
+    @user.save
 
     if @user.save
-      render json: @user, status: :created, location: @user
+      respond_to do |f|
+        f.HTMLf.json {render json: @user}
+      end
     else
       render json: @user.errors, status: :unprocessable_entity
     end
