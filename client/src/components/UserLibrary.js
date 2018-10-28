@@ -20,6 +20,33 @@ class userLibrary extends Component {
       })
   }
 
+  //addUserBook(newBook){
+  //  fetch(`http://localhost:3001/users/${this.props.userId}/books`, {
+  //    method: 'post',
+  //    body: JSON.stringify({ newBook:
+  //      [{
+  //        id: this.book.id,
+  //        title: this.book.volumeInfo.title,
+  //        authors: this.book.volumeInfo.authors,
+  //        description: this.book.volumeInfo.description,
+  //        link: this.book.volumeInfo.previewLink,
+  //     }]
+  //    }),
+    //  headers: {
+    //    'Content-Type': 'application/json'
+    //  },
+    //  success: function(response) {
+    //    console.log(response)
+    //  }
+  //  })
+  //  .then((response) => {
+  //    return response.json();
+  //  })
+  //  .then((responseJson) => {
+  //    console.log(responseJson);
+  //  })
+  //}
+
   render(){
     const userBooks = this.state.selectedBooks.map((book, idx) =>(
         <div className='col-3 my-4' key={idx}>
@@ -40,7 +67,9 @@ class userLibrary extends Component {
     return(
       <div className="user-library">
       <h1>Your library:</h1>
-        {userBooks}
+        <div className="row">
+          {userBooks}
+        </div>
       </div>
     )
   }

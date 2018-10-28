@@ -1,23 +1,37 @@
-function addUserBook(){
-  console.log(this.state.userId, this.state.bookId)
 
-  fetch(`/users/${this.state.userId}/books`, {
-    method: "post",
+
+function addUserBook(userId, newBook) {
+  //console.log(userId, newBook)
+  fetch(`http://localhost:3001/users/${userId}/books`, {
+    method: 'post',
+    body: JSON.stringify({ newBook
+      //[{
+      //  id: this.newBook.id,
+      //  title: this.newBook.volumeInfo.title,
+      //  authors: this.newBook.volumeInfo.authors,
+      //  description: this.newBook.volumeInfo.description,
+      //  link: this.newBook.volumeInfo.previewLink,
+     //}]
+   }),
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({
-      selectedBooks: [],
-      userId: [],
-    })
+    success: function(response) {
+      console.log(response)
+    }
   })
-  .then((response) => {
-    return response.json();
-  })
+  .then(parseJSON)
   .then((responseJson) => {
-    console.log(responseJson);
+    console.log(responseJson.items);
+    return responseJson.items;
   })
+  .then(newBook);
 }
+
+function parseJSON(response) {
+  return response.json();
+}
+
 
 const AddBook = { addUserBook };
 export default AddBook;

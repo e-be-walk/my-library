@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import NewSearch from '../actions/NewSearch';
 import AddBook from '../actions/AddBook';
+import UserLibrary from '../components/UserLibrary'
 //import Image from 'react-graceful-image';
 
 const MATCHING_ITEM_LIMIT = 8;
@@ -60,23 +61,22 @@ class SearchBooks extends Component {
     });
   };
 
-  addBook = (book) => {
+  onBookClick = (book) => {
     const newBook = this.state.selectedBooks.concat(book);
-    const currentUser = this.props.session.auth.current_user;
+    const userId = this.props.session.auth.userId;
 
-    this.setState({
-      selectedBooks: newBook,
-      userId: currentUser,
-    })
-    return console.log(newBook)
-    //need to connect a way to post info and pass to user books
-    AddBook.addUserBook(newBook => {
+    if (this._isMounted) {
       this.setState({
-        //books: books
-        selectedBooks: newBook,
-        userId: currentUser,
+        selectedBooks: newBook
+      });
+    }
+
+    AddBook.addUserBook(userId, (selectedBooks) => {
+      this.setState({
+        selectedBooks: newBook
       });
     });
+    return console.log(newBook)
   }
 
   componentDidMount() {
@@ -90,19 +90,12 @@ class SearchBooks extends Component {
   render() {
     const { showRemoveIcon, books } = this.state;
     const removeIconStyle = showRemoveIcon ? {} : { visibility: 'hidden'};
-    //var image = books.map((book, idx) =>(
-      //if (book.volumeInfo.includes(imageLinks)) {
-      //  <img src={books.volumeInfo.imageLinks.thumbnail} alt="" />
-      //} else {
-      //  <img src={'../images/missing.png'} alt="Image Missing"/>
-      //}
-      //book.volumeInfo.includes(imageLinks) ?
-      //<img src={books.volumeInfo.imageLinks.thumbnail} alt="" /> : <img src={'../images/missing.png'} alt="Image Missing"/>
-    //));
-    //userFunctions = addBook
 
     const bookRows = books.map((book, idx) =>(
-        <div className='col-3 my-4' key={idx}>
+        <div className='col-3 my-4'
+        key={idx}
+        onClick={() => this.onBookClick(book)}
+        >
           <div className='card'>
             <div className='card-title'>
               <h3><a href={book.volumeInfo.previewLink}>{book.volumeInfo.title}</a></h3>
@@ -113,7 +106,7 @@ class SearchBooks extends Component {
             <div className='scroll-box'>
               <p>{book.volumeInfo.description}</p><br></br>
             </div>
-          <button onClick={() => this.addBook(book)} type='submit'>Add to your library</button>
+          <button type='submit'>Add to your library</button>
           </div>
         </div>
 

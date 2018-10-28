@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :up_votes
   resources :book_clubs
-  
+
   resources :users do
     resources :books
   end
