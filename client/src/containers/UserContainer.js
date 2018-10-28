@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import SearchBooks from '../components/SearchBooks';
-import UserLibrary from '../components/UserLibrary';
+import SelectedBooks from '../components/SelectedBooks';
+import { connect } from 'react-redux';
+//import UserLibrary from '../components/UserLibrary';
 
-class userContainer extends Component {
+
+class UserContainer extends Component {
   state = {
     selectedBooks: [],
+    userBooks: [],
     userId: '',
   }
 
@@ -13,8 +17,10 @@ class userContainer extends Component {
     this.setState({ selectedBooks: newBooks });
   }
 
+
   render() {
     const { selectedBooks } = this.state;
+    const { userBooks } = this.state;
 
     return (
       <div className='App'>
@@ -23,7 +29,7 @@ class userContainer extends Component {
         onBookClick={this.addBook}
         />
 
-        <UserLibrary
+        <SelectedBooks
         books={selectedBooks}
         />
       </div>
@@ -31,4 +37,8 @@ class userContainer extends Component {
   }
 }
 
-export default UserContainer;
+const mapStateToProps = state => {
+  return {userId: state.session.auth.userId}
+}
+
+export default connect(mapStateToProps)(UserContainer);

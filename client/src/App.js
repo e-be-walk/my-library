@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import Navbar from './containers/Navbar'
+import Navbar from './containers/Navbar';
+import About from './containers/About';
 import SignupForm from './components/Signup';
 import LoginForm from './components/Login';
 import Logout from './components/Logout';
 
 import SearchBooks from './components/SearchBooks';
 import UserLibrary from './components/UserLibrary';
+import UserContainer from './containers/UserContainer';
 //import ErrorBoundary from './components/ErrorBoundary'
 
 import { connect } from 'react-redux';
@@ -21,6 +23,8 @@ class App extends Component {
 
     const userRoutes = (
       <div className='app container'>
+        <Route path="/about" component={ About } />
+        <Route path="/home" component={ UserContainer } />
         <Route path="/logout" component={ Logout } />
         <Route path="/search" component={ SearchBooks } />
         <Route path="/library" component={ UserLibrary } />
@@ -29,6 +33,8 @@ class App extends Component {
 
     const guestRoutes = (
       <div className='app container'>
+        <Route path="/" component={ About } />
+        <Route path="/home" component={ UserContainer } />
         <Route path="/signup" component={ SignupForm } />
         <Route path="/login" component={ LoginForm } />
         <Route path="/search" component={ SearchBooks } />

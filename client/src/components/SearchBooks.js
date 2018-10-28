@@ -21,7 +21,7 @@ class SearchBooks extends Component {
       };
 
       this.handleSearchChange = this.handleSearchChange.bind(this);
-      this.addBook = this.addBook.bind(this);
+    //  this.addBook = this.addBook.bind(this);
     }
 
   handleSearchChange = (e) => {
@@ -61,24 +61,24 @@ class SearchBooks extends Component {
     });
   };
 
-  addBook = (book) => {
-    const newBook = this.state.selectedBooks.concat(book);
-    const userId = this.props.session.auth.userId;
+  //addBook = (book) => {
+  //  const newBook = this.state.selectedBooks.concat(book);
+  //  const userId = this.props.session.auth.userId;
 
-    if(this._isMounted) {
-      this.setState({
-        selectedBooks: newBook,
-      });
-    }
+  //  if(this._isMounted) {
+  //    this.setState({
+  //      selectedBooks: newBook,
+  //    });
+  //  }
 
 
-    AddBook.addUserBook(userId, newBook, () => {
-      this.setState({
-        selectedBooks: newBook
-      });
-    });
-    return console.log(newBook)
-  }
+  //  AddBook.addUserBook(userId, newBook, () => {
+  //    this.setState({
+  //      selectedBooks: newBook
+  //    });
+  //  });
+  //  return console.log(newBook)
+  //}
 
   componentDidMount() {
     this._isMounted = true
@@ -96,16 +96,16 @@ class SearchBooks extends Component {
     const bookRows = books.map((book, idx) =>(
         <div className='col-3 my-4'
         key={idx}
-        onClick={() => this.addBook(book)}
+        onClick={() => this.props.onBookClick(book)}
         >
           <div className='card'>
-            <div className='card-title' value={this.state.title}>
+            <div className='card-title'>
               <h3><a href={book.volumeInfo.previewLink}>{book.volumeInfo.title}</a></h3>
             </div>
-            <div className='card-authors' value={this.state.authors}>
-              <h3>{book.volumeInfo.authors}</h3>
+            <div className='card-authors'>
+              <h4>{book.volumeInfo.authors}</h4>
             </div>
-            <div className='scroll-box' value={this.state.authors}>
+            <div className='scroll-box'>
               <p>{book.volumeInfo.description}</p><br></br>
             </div>
           <button type='submit'>Add to your library</button>

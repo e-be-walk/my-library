@@ -7,13 +7,6 @@ function addUserBook(userId, newBook) {
     method: 'post',
     body: JSON.stringify({
       newBook
-      //[{
-      //  id: this.newBook.id,
-      //  title: newBook.volumeInfo.title,
-      //  authors: newBook.volumeInfo.authors,
-      //  description: newBook.volumeInfo.description,
-      //  link: newBook.volumeInfo.previewLink,
-     //}]
    }),
     headers: {
       'Content-Type': 'application/json'
