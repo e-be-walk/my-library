@@ -21,6 +21,7 @@ class SearchBooks extends Component {
       };
 
       this.handleSearchChange = this.handleSearchChange.bind(this);
+      this.addBook = this.addBook.bind(this);
     }
 
   handleSearchChange = (e) => {
@@ -46,7 +47,6 @@ class SearchBooks extends Component {
 
       NewSearch.search(value, (books) => {
         this.setState({
-          //books: books
           books: books.slice(0, MATCHING_ITEM_LIMIT),
         });
       });
@@ -72,9 +72,9 @@ class SearchBooks extends Component {
     }
 
 
-    AddBook.addUserBook(userId, (newBook) => {
+    AddBook.addUserBook(userId, newBook, () => {
       this.setState({
-        selectedBooks: newBook,
+        selectedBooks: newBook
       });
     });
     return console.log(newBook)
@@ -99,13 +99,13 @@ class SearchBooks extends Component {
         onClick={() => this.addBook(book)}
         >
           <div className='card'>
-            <div className='card-title' value={book.title}>
+            <div className='card-title' value={this.state.title}>
               <h3><a href={book.volumeInfo.previewLink}>{book.volumeInfo.title}</a></h3>
             </div>
-            <div className='card-authors' value={book.authors}>
+            <div className='card-authors' value={this.state.authors}>
               <h3>{book.volumeInfo.authors}</h3>
             </div>
-            <div className='scroll-box'>
+            <div className='scroll-box' value={this.state.authors}>
               <p>{book.volumeInfo.description}</p><br></br>
             </div>
           <button type='submit'>Add to your library</button>

@@ -18,11 +18,13 @@ class userContainer extends Component {
 
     return (
       <div className='App'>
-        <UserLibrary
-        books={selectedBooks}
-        />
+
         <SearchBooks
         onBookClick={this.addBook}
+        />
+
+        <UserLibrary
+        books={selectedBooks}
         />
       </div>
     );
