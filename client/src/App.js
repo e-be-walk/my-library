@@ -9,7 +9,6 @@ import Logout from './components/Logout';
 
 import SearchBooks from './components/SearchBooks';
 import UserLibrary from './components/UserLibrary';
-//import UserContainer from './container/UserContainer'
 //import ErrorBoundary from './components/ErrorBoundary'
 
 import { connect } from 'react-redux';
@@ -18,7 +17,7 @@ class App extends Component {
 
   render() {
     const isAuthenticated = this.props.session.auth.isAuthenticated;
-    const currentUser = this.props.session.current_user;
+    const currentUser = this.props.session.userId;
 
     const userRoutes = (
       <div className='app container'>

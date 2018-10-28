@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import NewSearch from '../actions/NewSearch';
 import AddBook from '../actions/AddBook';
-import UserLibrary from '../components/UserLibrary'
+import UserLibrary from '../components/UserLibrary';
 //import Image from 'react-graceful-image';
 
 const MATCHING_ITEM_LIMIT = 8;
@@ -61,19 +61,20 @@ class SearchBooks extends Component {
     });
   };
 
-  onBookClick = (book) => {
+  addBook = (book) => {
     const newBook = this.state.selectedBooks.concat(book);
     const userId = this.props.session.auth.userId;
 
-    if (this._isMounted) {
+    if(this._isMounted) {
       this.setState({
-        selectedBooks: newBook
+        selectedBooks: newBook,
       });
     }
 
-    AddBook.addUserBook(userId, (selectedBooks) => {
+
+    AddBook.addUserBook(userId, (newBook) => {
       this.setState({
-        selectedBooks: newBook
+        selectedBooks: newBook,
       });
     });
     return console.log(newBook)
@@ -91,16 +92,17 @@ class SearchBooks extends Component {
     const { showRemoveIcon, books } = this.state;
     const removeIconStyle = showRemoveIcon ? {} : { visibility: 'hidden'};
 
+
     const bookRows = books.map((book, idx) =>(
         <div className='col-3 my-4'
         key={idx}
-        onClick={() => this.onBookClick(book)}
+        onClick={() => this.addBook(book)}
         >
           <div className='card'>
-            <div className='card-title'>
+            <div className='card-title' value={book.title}>
               <h3><a href={book.volumeInfo.previewLink}>{book.volumeInfo.title}</a></h3>
             </div>
-            <div className='card-authors'>
+            <div className='card-authors' value={book.authors}>
               <h3>{book.volumeInfo.authors}</h3>
             </div>
             <div className='scroll-box'>

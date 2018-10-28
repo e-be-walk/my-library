@@ -1,5 +1,5 @@
 class Book < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, optional: :true
   #belongs_to :book_club
   #has_many :up_votes
 
@@ -7,5 +7,5 @@ class Book < ApplicationRecord
   #def as_json(opts = {})
   #  super.tap
   #  end.slice(*JSON_KEYS)
-  #end 
+  #end
 end
