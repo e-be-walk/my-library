@@ -21,7 +21,7 @@ class Navbar extends Component {
 
     const guestLinks = (
       <div className="nav fixed-top container">
-        <Link className="nav-link" to="/">About  </Link>
+        <Link className="nav-link" to="/about">About  </Link>
         <Link className="nav-link" to="/home">Home  </Link>
         <Link className="nav-link" to="/login">Login  </Link>
       </div>

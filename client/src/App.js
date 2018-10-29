@@ -33,7 +33,7 @@ class App extends Component {
 
     const guestRoutes = (
       <div className='app container'>
-        <Route path="/" component={ About } />
+        <Route path="/about" component={ About } />
         <Route path="/home" component={ UserContainer } />
         <Route path="/signup" component={ SignupForm } />
         <Route path="/login" component={ LoginForm } />
