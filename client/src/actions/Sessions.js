@@ -33,9 +33,11 @@ export function login(user){
       body: JSON.stringify(userObject)
     })
     .then(response => response.json())
-    .then(console.log(userObject))
-    .then(user =>
-      dispatch({ type: 'LOGGED_IN', user: user })
+    //.then(console.log('session', userObject))
+    .then(data => {
+      console.log('user session', data)
+      dispatch({ type: 'LOGGED_IN', user: data })
+    }
     );
   };
 }

@@ -4,9 +4,12 @@ class BooksController < ApplicationController
   skip_before_action :current_user, only: [:show]
   # GET /books
   def index
-    @books = Book.all
+    #@books = Book.all
+    
+    @user_books = User.find_by(id: params[:user_id]).books
 
-    render json: @books
+
+    render json: @user_books
   end
 
   # GET /books/1

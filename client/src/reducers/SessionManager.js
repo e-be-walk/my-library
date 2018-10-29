@@ -12,7 +12,7 @@ export default function sessionManager(
 			case "LOGGING_IN_NEW_USER":
 				return {...state, loggingIn: true}
  			case "LOGGED_IN":
- 				return {...state, loggingIn: false, auth: {isAuthenticated: true, userId: action.user.id}, current_user: action.user.id }
+ 				return {...state, loggingIn: false, auth: {isAuthenticated: true, userId: action.user.id}}
  			case "LOGOUT":
  				return {...state, auth: {isAuthenticated: false, userId: null}, current_user: ""}
  			default:

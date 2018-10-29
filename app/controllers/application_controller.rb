@@ -8,11 +8,11 @@ class ApplicationController < ActionController::API
   end
 
   def current_user
-    if session[:user_id]
-      @current_user ||= User.find(session[:user_id])
+    if session[:current_user]
+      @current_user ||= User.find(session[:current_user])
     else
       nil
     end
   end
-  
+
 end

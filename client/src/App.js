@@ -8,7 +8,7 @@ import SignupForm from './components/Signup';
 import LoginForm from './components/Login';
 import Logout from './components/Logout';
 
-import SearchBooks from './components/SearchBooks';
+import UserBookSearch from './components/UserBookSearch';
 import UserLibrary from './components/UserLibrary';
 import UserContainer from './containers/UserContainer';
 //import ErrorBoundary from './components/ErrorBoundary'
@@ -26,7 +26,7 @@ class App extends Component {
         <Route path="/about" component={ About } />
         <Route path="/home" component={ UserContainer } />
         <Route path="/logout" component={ Logout } />
-        <Route path="/search" component={ SearchBooks } />
+        <Route path="/search" component={ UserBookSearch } />
         <Route path="/library" component={ UserLibrary } />
       </div>
     )
@@ -37,7 +37,6 @@ class App extends Component {
         <Route path="/home" component={ UserContainer } />
         <Route path="/signup" component={ SignupForm } />
         <Route path="/login" component={ LoginForm } />
-        <Route path="/search" component={ SearchBooks } />
       </div>
     )
 

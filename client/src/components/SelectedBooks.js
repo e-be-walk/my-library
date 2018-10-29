@@ -18,7 +18,7 @@ export default function SelectedBooks(props) {
           <div className='scroll-box'>
             <p>{book.volumeInfo.description}</p><br></br>
           </div>
-        <button type='submit'>Add to your library</button>
+        
         </div>
       </div>
   ));

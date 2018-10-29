@@ -1,10 +1,13 @@
+import react from 'react';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import NewSearch from '../actions/NewSearch';
+import AddBook from '../actions/AddBook';
+import UserLibrary from '../components/UserLibrary';
 
 const MATCHING_ITEM_LIMIT = 8;
 
-class SearchBooks extends Component {
+class UserBookSearch extends Component {
 
   constructor(props) {
       super(props);
@@ -17,7 +20,7 @@ class SearchBooks extends Component {
       };
 
       this.handleSearchChange = this.handleSearchChange.bind(this);
-    //  this.addBook = this.addBook.bind(this);
+      this.addBook = this.addBook.bind(this);
     }
 
   handleSearchChange = (e) => {
@@ -57,6 +60,25 @@ class SearchBooks extends Component {
     });
   };
 
+  addBook = (e) => {
+    const newBook = this.state.selectedBooks.concat(e);
+    const userId = this.props.session.auth.userId;
+
+    if(this._isMounted) {
+      this.setState({
+        selectedBooks: newBook,
+      });
+    }
+
+
+    AddBook.addUserBook(userId, newBook, () => {
+      this.setState({
+        selectedBooks: newBook
+      });
+    });
+    return console.log(newBook)
+  }
+
   componentDidMount() {
     this._isMounted = true
   }
@@ -73,7 +95,7 @@ class SearchBooks extends Component {
     const bookRows = books.map((book, idx) =>(
         <div className='col-3 my-4'
         key={idx}
-        onClick={() => this.props.onBookClick(book)}
+        onClick={(e) => this.addBook(e)}
         >
           <div className='card'>
             <div className='card-title'>
@@ -133,4 +155,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(SearchBooks);
+export default connect(mapStateToProps)(UserBookSearch);
