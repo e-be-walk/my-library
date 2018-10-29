@@ -1,9 +1,6 @@
 # MyLibrary
 
-<a href="https://giphy.com/gifs/X9F6l32sBNDpFWQB3n/html5
-" target="_blank"><img src="https://giphy.com/gifs/X9F6l32sBNDpFWQB3n/html5" 
-alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
-
+![](https://media.giphy.com/media/fnvyaCScH719bXyzRS/giphy.gif)
 ## Thanks for checking out MyLibrary.
 MyLibrary is a web app that can be used for searching books. You can navigate to the 'Home' tab in the top left. From this page, using the Google Books API you can search for books retrieving several information fields and links. The user can then add book selections to a shortened list which renders below the closest matching search results.
 
