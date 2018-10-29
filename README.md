@@ -1,6 +1,6 @@
 # MyLibrary
 
-![MyLibrary](react_mylibrary.mov)
+<iframe src="https://giphy.com/embed/X9F6l32sBNDpFWQB3n" width="480" height="220" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/X9F6l32sBNDpFWQB3n">via GIPHY</a></p>
 
 ## Thanks for checking out MyLibrary.
 MyLibrary is a web app that can be used for searching books. You can navigate to the 'Home' tab in the top left. From this page, using the Google Books API you can search for books retrieving several information fields and links. The user can then add book selections to a shortened list which renders below the closest matching search results.
