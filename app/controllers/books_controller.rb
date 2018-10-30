@@ -5,7 +5,7 @@ class BooksController < ApplicationController
   # GET /books
   def index
     #@books = Book.all
-    
+
     @user_books = User.find_by(id: params[:user_id]).books
 
 
@@ -52,6 +52,6 @@ class BooksController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def book_params
-      params.fetch(:book, {}).permit(:id, :user_id, :book, :title, :authors, :link, :description)
+      params.permit(:id, :user_id, :book, :title, :authors, :link, :description)
     end
 end

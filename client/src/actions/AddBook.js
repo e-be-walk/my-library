@@ -1,12 +1,17 @@
 
 
-function addUserBook(userId, newBook) {
-  console.log(userId, newBook)
+function addUserBook(userId, book) {
+  console.log(userId, book)
 
   fetch(`http://localhost:3001/users/${userId}/books`, {
     method: 'post',
     body: JSON.stringify({
-      newBook
+      book: [{
+        title: book.volumeInfo.title,
+        authors: book.volumeInfo.authors,
+        description: book.volumeInfo.description,
+        link: book.volumeInfo.previewLink,
+      }]
    }),
     headers: {
       'Content-Type': 'application/json'
@@ -18,7 +23,7 @@ function addUserBook(userId, newBook) {
     console.log(responseJson);
     //return responseJson.items;
   })
-  .then(newBook);
+  .then(book);
 }
 
 function parseJSON(response) {

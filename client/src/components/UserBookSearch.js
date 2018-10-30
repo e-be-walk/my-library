@@ -1,9 +1,7 @@
-import react from 'react';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import NewSearch from '../actions/NewSearch';
 import AddBook from '../actions/AddBook';
-import UserLibrary from '../components/UserLibrary';
 
 const MATCHING_ITEM_LIMIT = 8;
 
@@ -60,23 +58,23 @@ class UserBookSearch extends Component {
     });
   };
 
-  addBook = (e) => {
-    const newBook = this.state.selectedBooks.concat(e);
+  addBook = (book) => {
+    //const newBook = this.state.selectedBooks.concat(book);
     const userId = this.props.session.auth.userId;
 
     if(this._isMounted) {
       this.setState({
-        selectedBooks: newBook,
+        selectedBooks: book,
       });
     }
 
 
-    AddBook.addUserBook(userId, newBook, () => {
+    AddBook.addUserBook(userId, book, () => {
       this.setState({
-        selectedBooks: newBook
+        selectedBooks: book
       });
     });
-    return console.log(newBook)
+    return console.log(book)
   }
 
   componentDidMount() {
@@ -95,11 +93,11 @@ class UserBookSearch extends Component {
     const bookRows = books.map((book, idx) =>(
         <div className='col-3 my-4'
         key={idx}
-        onClick={(e) => this.addBook(e)}
+        onClick={() => this.addBook(book)}
         >
           <div className='card'>
             <div className='card-title'>
-              <h3><a href={book.volumeInfo.previewLink}>{book.volumeInfo.title}</a></h3>
+              <h3 ><a href={book.volumeInfo.previewLink}>{book.volumeInfo.title}</a></h3>
             </div>
             <div className='card-authors'>
               <h4>{book.volumeInfo.authors}</h4>
