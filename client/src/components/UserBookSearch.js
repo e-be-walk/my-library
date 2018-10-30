@@ -64,14 +64,28 @@ class UserBookSearch extends Component {
 
     if(this._isMounted) {
       this.setState({
-        selectedBooks: book,
+        selectedBooks: [{
+          book: [{
+            title: book.volumeInfo.title,
+            authors: book.volumeInfo.authors[0],
+            description: book.volumeInfo.description,
+            link: book.volumeInfo.previewLink,
+          }]
+        }]
       });
     }
 
 
     AddBook.addUserBook(userId, book, () => {
       this.setState({
-        selectedBooks: book
+        selectedBooks: [{
+          book: [{
+            title: book.volumeInfo.title,
+            authors: book.volumeInfo.authors[0],
+            description: book.volumeInfo.description,
+            link: book.volumeInfo.previewLink,
+          }]
+        }]
       });
     });
     return console.log(book)

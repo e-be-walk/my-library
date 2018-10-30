@@ -19,6 +19,7 @@ class BooksController < ApplicationController
 
   # POST /books
   def create
+
     @book = Book.new(book_params)
     #@book.save
     #@user = User.find(params[:id])
@@ -52,6 +53,6 @@ class BooksController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def book_params
-      params.permit(:id, :user_id, :book, :title, :authors, :link, :description)
+      params.permit(:book, :id, :user_id, :title, :authors, :link, :description)
     end
 end

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SearchBooks from '../components/SearchBooks';
+import DeleteBook from '../actions/DeleteBook';
 
 class userLibrary extends Component {
 
@@ -20,32 +21,16 @@ class userLibrary extends Component {
       })
   }
 
-  //addUserBook(newBook){
-  //  fetch(`http://localhost:3001/users/${this.props.userId}/books`, {
-  //    method: 'post',
-  //    body: JSON.stringify({ newBook:
-  //      [{
-  //        id: this.book.id,
-  //        title: this.book.volumeInfo.title,
-  //        authors: this.book.volumeInfo.authors,
-  //        description: this.book.volumeInfo.description,
-  //        link: this.book.volumeInfo.previewLink,
-  //     }]
-  //    }),
-    //  headers: {
-    //    'Content-Type': 'application/json'
-    //  },
-    //  success: function(response) {
-    //    console.log(response)
-    //  }
+  //delete = (book) => {
+  //  const bookId = this.book.id;
+
+  //  DeleteBook.deleteUserBook(book, () => {
+  //    this.setState({
+  //      selectedBooks: []
+  //    })
   //  })
-  //  .then((response) => {
-  //    return response.json();
-  //  })
-  //  .then((responseJson) => {
-  //    console.log(responseJson);
-  //  })
-  //}
+  //};
+
 
   render(){
     const userBooks = this.state.selectedBooks.map((book, idx) =>(
@@ -60,6 +45,7 @@ class userLibrary extends Component {
             <div className='scroll-box'>
               <p>{book.description}</p><br></br>
             </div>
+            <button >Remove this book.</button>
           </div>
         </div>
     ));
