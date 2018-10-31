@@ -43,6 +43,10 @@ class BooksController < ApplicationController
   # DELETE /books/1
   def destroy
     @book.destroy
+    @user_books = User.find_by(id: params[:user_id]).books
+
+    #byebug
+    render json: @user_books
   end
 
   private

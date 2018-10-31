@@ -21,16 +21,23 @@ class userLibrary extends Component {
       })
   }
 
-  //delete = (book) => {
-  //  const bookId = this.book.id;
+  deleteBook = (book) => {
+    const userId = this.props.userId;
 
-  //  DeleteBook.deleteUserBook(book, () => {
-  //    this.setState({
-  //      selectedBooks: []
-  //    })
-  //  })
-  //};
+    DeleteBook.deleteUserBook(userId, book, () => {
+      this.setState({
+        selectedBooks: [],
+      })
+    })
+    //The following does not work in refreshing the browser to re-render the new component
+    this.props.history.push(`/users/${this.props.userId}/books`)
+    this.componentWillUnmount();
+    this.props.history.push(`/library`);
+  };
 
+  componentWillUnmount() {
+    this._isMounted = false
+  }
 
   render(){
     const userBooks = this.state.selectedBooks.map((book, idx) =>(
@@ -45,7 +52,7 @@ class userLibrary extends Component {
             <div className='scroll-box'>
               <p>{book.description}</p><br></br>
             </div>
-            <button >Remove this book.</button>
+            <button onClick={() => this.deleteBook(book)}>Remove this book.</button>
           </div>
         </div>
     ));

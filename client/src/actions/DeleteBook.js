@@ -1,7 +1,9 @@
-function deleteUserBook(book) {
-  console.log(book)
+import { connect } from 'react-redux';
 
-  fetch(`http://localhost:3001/book/${book.id}`, {
+function deleteUserBook(userId, book) {
+  console.log('DELETE', userId, book)
+
+  fetch(`http://localhost:3001/users/${userId}/books/${book.id}`, {
     method: 'delete',
     body: JSON.stringify({
         id: book.id
@@ -11,15 +13,11 @@ function deleteUserBook(book) {
     },
 
   })
-  .then(parseJSON)
-  .then((responseJson) => {
-    console.log(responseJson);
-    //return responseJson.items;
-  })
-}
-
-function parseJSON(response) {
-  return response.json();
+  .then(response => response.json())
+  .then( response => {
+    console.log("User Books:", response)
+    return response;
+    })
 }
 
 const DeleteBook = { deleteUserBook };

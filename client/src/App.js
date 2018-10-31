@@ -11,7 +11,6 @@ import Logout from './components/Logout';
 import UserBookSearch from './components/UserBookSearch';
 import UserLibrary from './components/UserLibrary';
 import UserContainer from './containers/UserContainer';
-//import ErrorBoundary from './components/ErrorBoundary'
 
 import { connect } from 'react-redux';
 
