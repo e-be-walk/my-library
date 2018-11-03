@@ -25,15 +25,18 @@ class userLibrary extends Component {
     const userId = this.props.userId;
 
     DeleteBook.deleteUserBook(userId, book, () => {
+      if(this._isMounted) {
+        this.componentWillMount()
+      }
       this.setState({
         selectedBooks: [],
-      })
-    })
-    //The following does not work in refreshing the browser to re-render the new component
-    this.props.history.push(`/users/${this.props.userId}/books`)
-    this.componentWillUnmount();
-    this.props.history.push(`/library`);
+      });
+    });
   };
+
+  componentDidMount() {
+    this._isMounted = true
+  }
 
   componentWillUnmount() {
     this._isMounted = false

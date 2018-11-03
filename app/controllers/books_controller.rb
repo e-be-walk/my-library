@@ -2,13 +2,9 @@ class BooksController < ApplicationController
   before_action :current_user
   before_action :set_book, only: [:show, :update, :destroy]
   skip_before_action :current_user, only: [:show]
-  # GET /books
+
   def index
-    #@books = Book.all
-
     @user_books = User.find_by(id: params[:user_id]).books
-
-
     render json: @user_books
   end
 
@@ -19,10 +15,7 @@ class BooksController < ApplicationController
 
   # POST /books
   def create
-
     @book = Book.new(book_params)
-    #@book.save
-    #@user = User.find(params[:id])
 
     if @book.save
       render json: @book.as_json, status: :ok
