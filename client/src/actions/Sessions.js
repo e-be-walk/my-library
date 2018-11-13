@@ -4,7 +4,7 @@ export function signup(user){
     return function(dispatch){
       dispatch({ type: 'LOGGING_IN_NEW_USER'});
 
-    return fetch('http://localhost:3001/sessions', {
+    return fetch('http://localhost:3001/users', {
       method: "post",
       headers: {
         'Content-Type': 'application/json'
@@ -14,7 +14,7 @@ export function signup(user){
     //.then(response => response.json())
     .then(console.log(userObject))
     .then(user =>
-      dispatch({ type: 'LOGGED_IN', user: user })
+      dispatch({ type: 'LOGGING_IN', user: user })
     )
   }
 }

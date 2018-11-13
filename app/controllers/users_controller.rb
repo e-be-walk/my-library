@@ -24,9 +24,7 @@ class UsersController < ApplicationController
     @user.save
 
     if @user.save
-      respond_to do |f|
-        f.HTMLf.json {render json: @user}
-      end
+      render json: @user
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -54,6 +52,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:email, :password_digest)
+      params.require(:user).permit(:email, :password)
     end
 end

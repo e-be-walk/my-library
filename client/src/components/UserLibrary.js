@@ -25,29 +25,19 @@ class userLibrary extends Component {
     const userId = this.props.userId;
 
     DeleteBook.deleteUserBook(userId, book, () => {
-      if(this._isMounted) {
-        this.componentWillMount()
-      }
       this.setState({
         selectedBooks: [],
       });
     });
+    this.componentWillMount()
   };
-
-  componentDidMount() {
-    this._isMounted = true
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false
-  }
 
   render(){
     const userBooks = this.state.selectedBooks.map((book, idx) =>(
         <div className='col-3 my-4' key={idx}>
           <div className='card'>
             <div className='card-title'>
-              <h3>{book.title}</h3>
+              <a href={book.previewLink}><h3>{book.title}</h3></a>
             </div>
             <div className='card-authors'>
               <h3>{book.authors}</h3>

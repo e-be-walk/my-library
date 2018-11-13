@@ -13,9 +13,7 @@ function deleteUserBook(userId, book) {
     },
 
   })
-  .then(response => response.json())
   .then( response => {
-    console.log("User Books:", response)
     return response;
     })
 }

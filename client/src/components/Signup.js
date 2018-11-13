@@ -4,18 +4,14 @@ import { signup } from '../actions/Sessions';
 
 class SignupForm extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
+    state = {
       email: '',
       password: '',
     }
-    //this.handleSignup = this.handleSignup.bind(this);
-  }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.history.push("/search")
+    this.props.history.push("/login")
     this.props.signup(this.state)
   }
 
@@ -35,8 +31,10 @@ class SignupForm extends Component {
         <form onSubmit={this.handleSubmit}>
           Email: <input onChange={this.handleChange} type="text" name="email"/><br></br>
           Password: <input onChange={this.handleChange} type="password" name="password"/><br></br>
-
           <input type="submit" value="Sign Up" />
+            <h4>When you click "Sign Up", you will be redirected to the Login Page
+            to authenticate your new credentials. Then you can search for books and
+            modify your very own user library.</h4>
         </form>
         </div>
       )

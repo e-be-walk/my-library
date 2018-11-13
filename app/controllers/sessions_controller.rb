@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+    #@user = User.find_or_create_by(session_params)
     @user = User.find_by(email: user_params[:email])
     if @user && @user.authenticate(user_params[:password])
       render status: 200, json: @user.to_json

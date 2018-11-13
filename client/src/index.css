@@ -65,6 +65,7 @@ h3 {
 
 h4 {
   font-size: 1.5em;
+  color: #334d00;
 }
 
 p {
@@ -224,7 +225,7 @@ img {
 }
 
 .card-title {
-  height: 5em;
+  height: 6em;
   overflow: scroll;
 }
 
