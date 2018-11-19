@@ -18,7 +18,7 @@ class App extends Component {
 
   render() {
     const isAuthenticated = this.props.session.auth.isAuthenticated;
-    const currentUser = this.props.session.userId;
+    //const currentUser = this.props.session.userId;
 
     const userRoutes = (
       <div className='app container'>
@@ -39,11 +39,11 @@ class App extends Component {
       </div>
     )
 
-    const showUserLibrary = () => (
-      <div className='app-content'>
-        <UserLibrary />
-      </div>
-    )
+    //const showUserLibrary = () => (
+    //  <div className='app-content'>
+    //    <UserLibrary />
+    //  </div>
+    //)
 
     return (
       <Router>

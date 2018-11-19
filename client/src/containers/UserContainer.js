@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 class UserContainer extends Component {
   state = {
     selectedBooks: [],
-    userBooks: [],
     userId: '',
   }
 

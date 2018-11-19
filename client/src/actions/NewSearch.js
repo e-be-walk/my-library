@@ -1,4 +1,3 @@
-//import { fromJS } from 'immutable';
 import fetch from 'isomorphic-fetch';
 
 

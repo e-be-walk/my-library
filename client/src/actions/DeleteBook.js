@@ -1,5 +1,3 @@
-import { connect } from 'react-redux';
-
 function deleteUserBook(userId, book) {
   console.log('DELETE', userId, book)
 

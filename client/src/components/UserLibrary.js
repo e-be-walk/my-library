@@ -37,7 +37,7 @@ class userLibrary extends Component {
         <div className='col-3 my-4' key={idx}>
           <div className='card'>
             <div className='card-title'>
-              <a href={book.previewLink}><h3>{book.title}</h3></a>
+              <a href={book.link}><h3>{book.title}</h3></a>
             </div>
             <div className='card-authors'>
               <h3>{book.authors}</h3>

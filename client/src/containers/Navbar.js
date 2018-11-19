@@ -7,7 +7,6 @@ class Navbar extends Component {
   render() {
 
     const isAuthenticated = this.props.session.auth.isAuthenticated
-    const currentUser = this.props.session.auth.userId;
 
     const userLinks = (
       <div className="nav fixed-top container">
@@ -26,6 +25,7 @@ class Navbar extends Component {
         <Link className="nav-link" to="/login">Login  </Link>
       </div>
     )
+    
     return(
       <div>
         { isAuthenticated ? userLinks : guestLinks }
