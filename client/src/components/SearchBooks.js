@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import NewSearch from '../actions/NewSearch';
+import { newSearch } from '../actions/NewSearch';
 
 const MATCHING_ITEM_LIMIT = 8;
 
@@ -41,7 +41,7 @@ class SearchBooks extends Component {
         showRemoveIcon: true,
       });
 
-      NewSearch.search(value, (books) => {
+      newSearch(value, (books) => {
         this.setState({
           books: books.slice(0, MATCHING_ITEM_LIMIT),
         });

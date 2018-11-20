@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch';
 
 
-function search(query, cb) {
+export function newSearch(query, cb) {
   return fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`, {
     method: 'get',
     headers: {
@@ -22,6 +22,3 @@ function search(query, cb) {
 function parseJSON(response) {
   return response.json();
 }
-
-const NewSearch = { search };
-export default NewSearch;
