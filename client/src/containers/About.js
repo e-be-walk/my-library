@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 export default function about() {
     return(
         <div className="about container">
+        <br></br>
         <h2>Hi! </h2>
         <h3>Thanks for checking out MyLibrary.</h3>
         <p>MyLibrary is a web app that can be used for searching books. Any one can see how the app works- navigate to the 'Home' tab in the top left. From this page, using the Google Books API you can search for books retrieving several information fields and links. The user can then add book selections to a shortened list which renders below the closest matching search results.

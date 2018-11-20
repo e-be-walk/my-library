@@ -25,6 +25,7 @@ class LoginForm extends Component {
   render(){
     return(
       <div className="signup-form">
+      <br></br>
         <h2>Login:</h2>
         <hr></hr>
         <form onSubmit={this.handleSubmit}>

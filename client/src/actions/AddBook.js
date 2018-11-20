@@ -24,6 +24,3 @@ export function addUserBook(userId, book) {
 function parseJSON(response) {
   return response.json();
 }
-
-const AddBook = { addUserBook };
-export default AddBook;

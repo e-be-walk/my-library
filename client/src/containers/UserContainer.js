@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import SearchBooks from '../components/SearchBooks';
 import SelectedBooks from '../components/SelectedBooks';
 import { connect } from 'react-redux';
-//import UserLibrary from '../components/UserLibrary';
 
 
 class UserContainer extends Component {

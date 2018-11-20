@@ -1,4 +1,4 @@
-function deleteUserBook(userId, book) {
+export function deleteUserBook(userId, book) {
   console.log('DELETE', userId, book)
 
   fetch(`http://localhost:3001/users/${userId}/books/${book.id}`, {
@@ -15,6 +15,3 @@ function deleteUserBook(userId, book) {
     return response;
     })
 }
-
-const DeleteBook = { deleteUserBook };
-export default DeleteBook;

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import SearchBooks from '../components/SearchBooks';
-import DeleteBook from '../actions/DeleteBook';
+import { deleteUserBook } from '../actions/DeleteBook';
 
 class userLibrary extends Component {
 
@@ -24,7 +23,7 @@ class userLibrary extends Component {
   deleteBook = (book) => {
     const userId = this.props.userId;
 
-    DeleteBook.deleteUserBook(userId, book, () => {
+    deleteUserBook(userId, book, () => {
       this.setState({
         selectedBooks: [],
       });
@@ -52,7 +51,9 @@ class userLibrary extends Component {
 
     return(
       <div className="user-library">
+      <br></br>
       <h1>Your library:</h1>
+      <br></br>
         <div className="row">
           {userBooks}
         </div>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import NewSearch from '../actions/NewSearch';
-import AddBook from '../actions/AddBook';
+import { addUserBook } from '../actions/AddBook';
 
 const MATCHING_ITEM_LIMIT = 8;
 
@@ -59,24 +59,9 @@ class UserBookSearch extends Component {
   };
 
   addBook = (book) => {
-    //const newBook = this.state.selectedBooks.concat(book);
     const userId = this.props.session.auth.userId;
 
-    if(this._isMounted) {
-      this.setState({
-        selectedBooks: [{
-          book: [{
-            title: book.volumeInfo.title,
-            authors: book.volumeInfo.authors[0],
-            description: book.volumeInfo.description,
-            link: book.volumeInfo.previewLink,
-          }]
-        }]
-      });
-    }
-
-
-    AddBook.addUserBook(userId, book, () => {
+    addUserBook(userId, book, () => {
       this.setState({
         selectedBooks: [{
           book: [{
@@ -104,9 +89,9 @@ class UserBookSearch extends Component {
     const removeIconStyle = showRemoveIcon ? {} : { visibility: 'hidden'};
 
 
-    const bookRows = books.map((book, idx) =>(
+    const bookRows = books.map((book) =>(
         <div className='col-3 my-4'
-        key={idx}
+        key={book.id}
         onClick={() => this.addBook(book)}
         >
           <div className='card'>
