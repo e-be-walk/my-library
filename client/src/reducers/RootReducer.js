@@ -5,7 +5,7 @@ import BookManager from './BookManager';
 
 const rootReducer = combineReducers({
   session: SessionManager,
-  search: SearchManager,
+  searchResults: SearchManager,
   books: BookManager,
 });
 
