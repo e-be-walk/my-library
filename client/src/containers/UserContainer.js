@@ -18,7 +18,6 @@ class UserContainer extends Component {
 
   render() {
     const { selectedBooks } = this.state;
-    const { userBooks } = this.state;
 
     return (
       <div className='App'>

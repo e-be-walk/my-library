@@ -3,9 +3,9 @@ import React from 'react';
 export default function SelectedBooks(props) {
   const { books } = props;
 
-  const bookRows = books.map((book, idx) =>(
+  const bookRows = books.map((book) =>(
       <div className='col-3 my-4'
-      key={idx}
+      key={book.id}
       onClick={() => props.onBookClick(book)}
       >
         <div className='card'>
@@ -18,7 +18,7 @@ export default function SelectedBooks(props) {
           <div className='scroll-box'>
             <p>{book.volumeInfo.description}</p><br></br>
           </div>
-        
+
         </div>
       </div>
   ));
