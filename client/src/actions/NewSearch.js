@@ -11,14 +11,10 @@ export function newSearch(query, cb) {
       console.log(response)
     }
   })
-  .then(parseJSON)
+  .then(response => response.json())
   .then((responseJson) => {
     console.log(responseJson.items);
     return responseJson.items;
   })
   .then(cb);
-}
-
-function parseJSON(response) {
-  return response.json();
 }

@@ -18,7 +18,8 @@ class UserBookSearch extends Component {
       };
 
       this.handleSearchChange = this.handleSearchChange.bind(this);
-      this.addBook = this.addBook.bind(this);
+
+      //this.addBook = this.addBook.bind(this);
     }
 
   handleSearchChange = (e) => {
@@ -58,22 +59,48 @@ class UserBookSearch extends Component {
     });
   };
 
-  addBook = (book) => {
-    const userId = this.props.session.auth.userId;
+  //addBook = (book) => {
+  //  const userId = this.props.session.auth.userId;
 
-    addUserBook(userId, book, () => {
-      this.setState({
-        selectedBooks: [{
-          book: [{
-            title: book.volumeInfo.title,
-            authors: book.volumeInfo.authors[0],
-            description: book.volumeInfo.description,
-            link: book.volumeInfo.previewLink,
-          }]
-        }]
-      });
-    });
-    return console.log(book)
+  //  addUserBook(userId, book, () => {
+  //    this.setState({
+  //      selectedBooks: [{
+  //        book: [{
+  //          title: book.volumeInfo.title,
+  //          authors: book.volumeInfo.authors,
+  //          description: book.volumeInfo.description,
+  //          link: book.volumeInfo.previewLink,
+  //        }]
+  //      }]
+  //    });
+  //  });
+  //  return console.log(userId, book)
+  //}
+
+  handleOnClick = (book) => {
+
+    const userId = this.props.session.auth.userId;
+    //const book = this.props.selectedBooks;
+
+    //if (this._isMounted) {
+    //  this.setState({
+    //    selectedBooks: book,
+    //  });
+    //}
+    //this.props.history.push("/library")
+    this.props.addUserBook(userId, book)
+    //  addUserBook(userId, book, () => {
+    //    this.setState({
+    //      selectedBooks: [{
+    //        book: [{
+    //          title: book.volumeInfo.title,
+    //          authors: book.volumeInfo.authors,
+    //          description: book.volumeInfo.description,
+    //          link: book.volumeInfo.previewLink,
+    //        }]
+    //      }]
+    //    });
+    //  });
   }
 
   componentDidMount() {
@@ -92,7 +119,8 @@ class UserBookSearch extends Component {
     const bookRows = books.map((book) =>(
         <div className='col-3 my-4'
         key={book.id}
-        onClick={() => this.addBook(book)}
+        onClick={() => this.handleOnClick(book)}
+        /*onClick={() => this.addUserBook(book)}*/
         >
           <div className='card'>
             <div className='card-title'>
@@ -152,4 +180,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(UserBookSearch);
+export default connect(mapStateToProps, { addUserBook })(UserBookSearch);

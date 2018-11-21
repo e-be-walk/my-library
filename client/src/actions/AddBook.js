@@ -1,7 +1,11 @@
 export function addUserBook(userId, book) {
-  console.log(userId, book)
 
-  fetch(`http://localhost:3001/users/${userId}/books`, {
+  console.log(userId, book)
+  //debugger
+
+  return (dispatch) => {
+  dispatch({type: 'ADDING_BOOKS'});
+  return fetch(`http://localhost:3001/users/${userId}/books`, {
     method: 'post',
     body: JSON.stringify({
         title: book.volumeInfo.title,
@@ -14,13 +18,15 @@ export function addUserBook(userId, book) {
     },
 
   })
-  .then(parseJSON)
-  .then((responseJson) => {
-    console.log(responseJson);
+  //.then(response => response.json)
+  //.then((responseJson) => {
+    //console.log(responseJson);
+  //})
+  //.then(book);
+  .then(response => response.json())
+  .then(data => {
+    console.log('book', data)
+    dispatch({ type: 'SAVED_BOOK', book: data})
   })
-  .then(book);
-}
-
-function parseJSON(response) {
-  return response.json();
+  }
 }
