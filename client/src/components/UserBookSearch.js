@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { newSearch } from '../actions/NewSearch';
 import { addUserBook } from '../actions/AddBook';
+import { fetchUserBooks } from '../actions/FetchBooks';
 
 const MATCHING_ITEM_LIMIT = 8;
 
@@ -84,7 +85,17 @@ class UserBookSearch extends Component {
 
     //this.props.history.push("/library")
     this.props.addUserBook(userId, book)
+  }
 
+  fetchBooks = () => {
+    const userId = this.props.session.auth.userId;
+
+    if(this._isMounted) {
+      this.setState({
+        books: [],
+      });
+    }
+    this.props.fetchUserBooks(userId)
   }
 
   componentDidMount() {
@@ -164,4 +175,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { addUserBook })(UserBookSearch);
+export default connect(mapStateToProps, { addUserBook, fetchUserBooks })(UserBookSearch);

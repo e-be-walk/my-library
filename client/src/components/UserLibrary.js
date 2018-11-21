@@ -1,24 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deleteUserBook } from '../actions/DeleteBook';
+import { fetchUserBooks } from '../actions/FetchBooks';
 
 class userLibrary extends Component {
 
   state = {
     selectedBooks: [],
     userId: '',
+    books: [],
   }
 
   componentWillMount(){
-    fetch(`http://localhost:3001/users/${this.props.userId}/books`)
-    .then(response => response.json())
-    .then( response => {
-      console.log("User Books:", response)
-      this.setState({
-        selectedBooks: response
-        })
-      })
+   fetch(`http://localhost:3001/users/${this.props.userId}/books`)
+   .then(response => response.json())
+   .then( response => {
+     console.log("User Books:", response)
+     this.setState({
+       selectedBooks: response
+       })
+     })
   }
+
+  // fetchBooks = () => {
+  //   const userId = this.props.session.auth.userId;
+  //
+  //
+  //   if(this._isMounted) {
+  //     this.setState({
+  //       books: [],
+  //     });
+  //   }
+  //   this.props.fetchUserBooks(userId)
+  // }
 
   deleteBook = (book) => {
     const userId = this.props.userId;
@@ -32,6 +46,8 @@ class userLibrary extends Component {
     this.props.deleteUserBook(userId, book)
     this.props.history.push("/library")
   };
+
+
 
   render(){
     const userBooks = this.state.selectedBooks.map((book, idx) =>(
@@ -71,4 +87,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { deleteUserBook })(userLibrary);
+export default connect(mapStateToProps, { deleteUserBook , fetchUserBooks })(userLibrary);
