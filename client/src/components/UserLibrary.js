@@ -23,12 +23,14 @@ class userLibrary extends Component {
   deleteBook = (book) => {
     const userId = this.props.userId;
 
-    deleteUserBook(userId, book, () => {
-      this.setState({
-        selectedBooks: [],
-      });
-    });
-    this.componentWillMount()
+    //deleteUserBook(userId, book, () => {
+    //  this.setState({
+    //    selectedBooks: [],
+    //  });
+    //});
+    //this.componentWillMount()
+    this.props.deleteUserBook(userId, book)
+    this.props.history.push("/library")
   };
 
   render(){
@@ -63,7 +65,10 @@ class userLibrary extends Component {
 }
 
 const mapStateToProps = state => {
-  return {userId: state.session.auth.userId}
+  return {
+    userId: state.session.auth.userId,
+    selectedBooks: state.selectedBooks,
+  }
 }
 
-export default connect(mapStateToProps)(userLibrary);
+export default connect(mapStateToProps, { deleteUserBook })(userLibrary);

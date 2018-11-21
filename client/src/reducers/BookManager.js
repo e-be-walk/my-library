@@ -13,6 +13,10 @@ export default function bookManager(
         return {...state, loading: true}
       case "SAVED_BOOK":
         return {...state, loading: false}
+      case "DELETING_BOOK":
+        return {...state, loading: true}
+      case "DELETED":
+        return {...state, loading: false}
       default:
         return state
     }

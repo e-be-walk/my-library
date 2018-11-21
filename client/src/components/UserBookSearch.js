@@ -82,25 +82,9 @@ class UserBookSearch extends Component {
     const userId = this.props.session.auth.userId;
     //const book = this.props.selectedBooks;
 
-    //if (this._isMounted) {
-    //  this.setState({
-    //    selectedBooks: book,
-    //  });
-    //}
     //this.props.history.push("/library")
     this.props.addUserBook(userId, book)
-    //  addUserBook(userId, book, () => {
-    //    this.setState({
-    //      selectedBooks: [{
-    //        book: [{
-    //          title: book.volumeInfo.title,
-    //          authors: book.volumeInfo.authors,
-    //          description: book.volumeInfo.description,
-    //          link: book.volumeInfo.previewLink,
-    //        }]
-    //      }]
-    //    });
-    //  });
+
   }
 
   componentDidMount() {
