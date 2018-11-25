@@ -11,7 +11,7 @@ class LoginForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.history.push("/search")
+    this.props.history.push("/library")
     this.props.login(this.state)
   }
 

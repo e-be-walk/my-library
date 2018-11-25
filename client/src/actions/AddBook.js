@@ -4,7 +4,7 @@ export function addUserBook(userId, book) {
   //debugger
 
   return (dispatch) => {
-  dispatch({type: 'ADDING_BOOKS'});
+  dispatch({type: 'ADDING_BOOK'});
   return fetch(`http://localhost:3001/users/${userId}/books`, {
     method: 'post',
     body: JSON.stringify({

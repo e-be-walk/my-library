@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deleteUserBook } from '../actions/DeleteBook';
-import { fetchUserBooks } from '../actions/FetchBooks';
+import { deleteUserBook, fetchUserBooks } from '../actions/BookActions';
+// import { fetchUserBooks } from '../actions/FetchBooks';
 
 class userLibrary extends Component {
 
@@ -11,7 +11,13 @@ class userLibrary extends Component {
     books: [],
   }
 
+  // componentDidMount() {
+  //   this.props.fetchUserBooks(this.props.userId)
+  // }
   componentWillMount(){
+    // return (dispatch) => {
+      // dispatch({type: 'LOADING_BOOKS'})
+
    fetch(`http://localhost:3001/users/${this.props.userId}/books`)
    .then(response => response.json())
    .then( response => {
@@ -19,30 +25,39 @@ class userLibrary extends Component {
      this.setState({
        selectedBooks: response
        })
+       // dispatch({ type: 'USER_BOOKS', selectedBooks: response})
      })
+   // }
   }
 
-  // fetchBooks = () => {
-  //   const userId = this.props.session.auth.userId;
+  // fetchBooks = (e) => {
+  //   e.preventDefault();
+  //   const userId = this.props.userId;
   //
+      // if(this._isMounted) {
+      //   this.setState({
+      //     selectedBooks: [],
+      //   });
+      // }
+    // this.props.fetchUserBooks(this.state)
+    // this.setState({
+    //   [e.target.name]: e.target.value
+    // });
+  //   this.props.history.push("/library")
   //
-  //   if(this._isMounted) {
-  //     this.setState({
-  //       books: [],
-  //     });
-  //   }
-  //   this.props.fetchUserBooks(userId)
+  //};
+
+  // componentDidMount() {
+  //   this._isMounted = true
+  //   this.props.fetchUserBooks(this.props.userId)
+  // }
+  //
+  // componentWillUnmount() {
+  //   this._isMounted = false
   // }
 
   deleteBook = (book) => {
     const userId = this.props.userId;
-
-    //deleteUserBook(userId, book, () => {
-    //  this.setState({
-    //    selectedBooks: [],
-    //  });
-    //});
-    //this.componentWillMount()
     this.props.deleteUserBook(userId, book)
     this.props.history.push("/library")
   };
@@ -87,4 +102,9 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { deleteUserBook , fetchUserBooks })(userLibrary);
+const mapDispatchToProps = dispatch => ({
+  deleteUserBook: (userId, book) => dispatch(deleteUserBook(userId, book)),
+  //fetchUserBooks: userId => dispatch(fetchUserBooks(userId)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(userLibrary);

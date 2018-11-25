@@ -1,26 +1,23 @@
 export default function bookManager(
   state = {
     loading: false,
-    books: [],
-    selectedBooks: [],
+    selectedBooks: {id: null, title: null},
   },
   action)
 
   {
     switch(action.type){
-      // case "LOADING_BOOKS":
-      //   return {...state, loading: true}
-      // case "USER_BOOKS":
-      //   return {loading: false, books: [...state.selectedBooks, action.payload]}
+      // Need to remove componentDidMount segment of user library to fetch in BookActions
+      // then map through user books in dispatch USER_BOOKS
+      case "LOADING_BOOKS":
+       return {...state, loading: true}
+      case "USER_BOOKS":
+       return {...state, loading: false}
+      //return {loading: false, selectedBooks: action.payload }
       case "ADDING_BOOK":
-        if (action.payload.id && action.payload.title) {
-          return {loading: false, books: [this.state.book, action.payload]}
-        } else {
-          return state;
-        }
-        //return {...state, loading: true}
+        return {...state, loading: false}
       case "SAVED_BOOK":
-        return {selectedBooks: action.book.id, loading: false}
+        return {selectedBooks: {id: action.book.id, title: action.book.title}, loading: false}
       case "DELETING_BOOK":
         return {...state, loading: true}
       case "DELETED":
