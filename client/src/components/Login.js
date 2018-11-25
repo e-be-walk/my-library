@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { login } from '../actions/Sessions';
+import { fetchUserBooks } from '../actions/BookActions';
 
 class LoginForm extends Component {
 
@@ -11,8 +12,8 @@ class LoginForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.history.push("/library")
-    this.props.login(this.state)
+    this.props.history.push("/library");
+    this.props.login(this.state);
   }
 
   handleChange = (e) => {

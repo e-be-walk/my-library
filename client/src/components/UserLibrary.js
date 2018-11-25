@@ -25,16 +25,16 @@ class userLibrary extends Component {
     //   debugger
    // return
    fetch(`http://localhost:3001/users/${this.props.userId}/books`)
-   .then(response => response.json())
-   .then( response => {
-     console.log("User Books:", response)
-     this.setState({
-       selectedBooks: response
-       })
+     .then(response => response.json())
+     .then( response => {
+       console.log("User Books:", response)
+       this.setState({
+         selectedBooks: response
+         })
        // dispatch({ type: 'USER_BOOKS', selectedBooks: response})
     })
    }
-  
+
 
 
   deleteBook = (book) => {

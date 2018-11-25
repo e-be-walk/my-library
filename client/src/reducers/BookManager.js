@@ -15,9 +15,9 @@ export default function bookManager(
       case "ADDING_BOOK":
         return {...state, loading: false}
       case "SAVED_BOOK":
-        return {selectedBooks: {id: action.book.id, title: action.book.title}, loading: false}
+        return {selectedBook: {id: action.book.id, title: action.book.title}, loading: false}
       case "DELETING_BOOK":
-        return {...state, loading: true}
+        return {selectedBook: {id: action.book.id, title: action.book.title}, loading: true}
       case "DELETED":
         return {...state, loading: false}
       default:

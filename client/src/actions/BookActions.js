@@ -34,11 +34,6 @@ export const addUserBook = (userId, book) => {
     },
 
   })
-  //.then(response => response.json)
-  //.then((responseJson) => {
-    //console.log(responseJson);
-  //})
-  //.then(book);
   .then(response => response.json())
   .then(data => {
     console.log('book', data)
@@ -51,7 +46,7 @@ export const deleteUserBook = (userId, book) => {
   console.log('DELETE', userId, book)
 
   return (dispatch) =>{
-    dispatch({type: 'DELETING_BOOK'});
+    dispatch({type: 'DELETING_BOOK', book: book});
 
   return fetch(`http://localhost:3001/users/${userId}/books/${book.id}`, {
     method: 'delete',

@@ -81,9 +81,8 @@ class UserBookSearch extends Component {
 
     const userId = this.props.session.auth.userId;
     //const book = this.props.selectedBooks;
-
-    //this.props.history.push("/library")
     this.props.addUserBook(userId, book)
+    // this.props.fetchUserBooks(userId)
   }
 
   componentDidMount() {
