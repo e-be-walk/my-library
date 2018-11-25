@@ -7,13 +7,11 @@ export default function bookManager(
 
   {
     switch(action.type){
-      // Need to remove componentDidMount segment of user library to fetch in BookActions
-      // then map through user books in dispatch USER_BOOKS
+
       case "LOADING_BOOKS":
        return {...state, loading: true}
       case "USER_BOOKS":
-       return {...state, loading: false}
-      //return {loading: false, selectedBooks: action.payload }
+       return {...state, loading: false, selectedBooks: action.selectedBooks }
       case "ADDING_BOOK":
         return {...state, loading: false}
       case "SAVED_BOOK":
