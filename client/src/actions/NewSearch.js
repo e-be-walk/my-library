@@ -12,9 +12,9 @@ export function newSearch(query, cb) {
     }
   })
   .then(response => response.json())
-  .then((responseJson) => {
-    console.log(responseJson.items);
-    return responseJson.items;
+  .then(response => {
+    console.log("Book Search Results:", response.items);
+    return response.items;
   })
   .then(cb);
 }
