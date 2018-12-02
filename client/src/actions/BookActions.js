@@ -58,6 +58,12 @@ export const deleteUserBook = (userId, book) => {
     },
 
   })
+
+ //  .then(response => response.json())
+ //  .then(response => {
+ //    console.log("User Books:", response)
+ //    dispatch({ type: 'DELETED', selectedBooks: response})
+ // })
   .then( response => {
     return response;
     })

@@ -18,10 +18,12 @@ export default function bookManager(
       case "SAVED_BOOK":
         return {selectedBooks: [...state.selectedBooks, action.book], loading: false}
       case "DELETING_BOOK":
-        return {selectedBooks: action.book, loading: true}
+        // return {selectedBooks: [...state.selectedBooks], loading: true}
+        return {...state, loading: true}
       case "DELETED":
         // let newBookList = state.selectedBooks.slice()
         // return {...state, selectedBooks: newBookList.filter(b => newBookList.indexOf(b) !== action.index), loading: false}
+        //return {...state, loading: false}
         return {...state, loading: false}
       default:
         return state
