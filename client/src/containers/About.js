@@ -11,7 +11,7 @@ export default function about() {
         <br></br>
         If you want to, you can create and log-in as a user which will enable you to add and remove books from your own personal library. Eventually I would like to incorporate a way for users to interact with one another via a shared book club. <br></br>
         <br></br>
-        This app was built using Ruby on Rails, sqLite3, and React. To find out more about this app, check out the <a href="https://github.com/e-be-walk/my-library" target='blank'>repo.</a>
+        This app was built using Ruby on Rails, SQLite3, React, and Redux. To find out more about this app, check out the <a href="https://github.com/e-be-walk/my-library" target='blank'>repo.</a>
         <br></br>
         <br></br>
         </p>

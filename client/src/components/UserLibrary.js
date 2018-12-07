@@ -13,49 +13,12 @@ class userLibrary extends Component {
       };
     }
 
-
-        // componentWillMount() {
-          //debugger
-          // return (dispatch) => {
-          //
-          //   dispatch({type: 'LOADING_BOOKS'})
-          //   debugger
-         // return
-         // fetch(`http://localhost:3001/users/${this.props.userId}/books`)
-         //   .then(response => response.json())
-         //   .then( response => {
-         //     console.log("User Books:", response)
-         //     this.setState({
-         //       selectedBooks: response
-         //       })
-             // dispatch({ type: 'USER_BOOKS', selectedBooks: response})
-         //  })
-         // }
-
-         // When you try to incorporate fetchBooks as a function triggered by an event, oddly
-         // the return of information loops but the DOM never updates. When used in a componentWillMount
-         // the information is retrieved only once but also does not update DOM.
-
   componentDidMount() {
       const userId = this.props.userId;
-      //debugger
       if (this.props.selectedBooks.length === 0) {
       this.props.fetchUserBooks(userId)
     }
 }
-
- //   fetchBooks= () => {
- //     const userId = this.props.userId;
- //     this.props.fetchUserBooks(userId)
- //     this.setState({
- //        selectedBooks: [{
- //
- //        }]
- // })
- //     this.props.history.push("/library")
- //   }
-
-
 
   deleteBook = (book) => {
     const userId = this.props.userId;
@@ -66,7 +29,6 @@ class userLibrary extends Component {
 
 
   render(){
-    // debugger
     const userBooks = this.props.selectedBooks.map((book) =>(
         <div className='col-3 my-4' key={book.id}>
           <div className='card'>
@@ -107,7 +69,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   deleteUserBook: (userId, book) => dispatch(deleteUserBook(userId, book)),
   fetchUserBooks: (userId) => dispatch(fetchUserBooks(userId)),
-  // selectedBooks: (userId) => dispatch(fetchUserBooks(userId)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(userLibrary);

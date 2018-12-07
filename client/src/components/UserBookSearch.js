@@ -18,8 +18,6 @@ class UserBookSearch extends Component {
       };
 
       this.handleSearchChange = this.handleSearchChange.bind(this);
-
-      //this.addBook = this.addBook.bind(this);
     }
 
   handleSearchChange = (e) => {
@@ -59,30 +57,10 @@ class UserBookSearch extends Component {
     });
   };
 
-  //addBook = (book) => {
-  //  const userId = this.props.session.auth.userId;
-
-  //  addUserBook(userId, book, () => {
-  //    this.setState({
-  //      selectedBooks: [{
-  //        book: [{
-  //          title: book.volumeInfo.title,
-  //          authors: book.volumeInfo.authors,
-  //          description: book.volumeInfo.description,
-  //          link: book.volumeInfo.previewLink,
-  //        }]
-  //      }]
-  //    });
-  //  });
-  //  return console.log(userId, book)
-  //}
-
   handleOnClick = (book) => {
 
     const userId = this.props.session.auth.userId;
-    //const book = this.props.selectedBooks;
     this.props.addUserBook(userId, book)
-    // this.props.fetchUserBooks(userId)
   }
 
   componentDidMount() {

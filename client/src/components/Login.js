@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { login } from '../actions/Sessions';
-import { fetchUserBooks } from '../actions/BookActions';
 
 class LoginForm extends Component {
 
