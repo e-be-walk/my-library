@@ -2,16 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deleteUserBook, fetchUserBooks } from '../actions/BookActions';
 
-class userLibrary extends Component {
+import Book from './Book'
 
-  constructor(props) {
-      super(props);
-      this.state = {
-        selectedBooks: [],
-        userId: '',
-        books: [],
-      };
-    }
+class userLibrary extends Component {
+  constructor() {
+    super()
+
+    this.state = {
+      selectedBooks: [],
+      userId: '',
+      books: [],
+      counter: 0,
+    };
+  }
 
   componentDidMount() {
       const userId = this.props.userId;
@@ -26,25 +29,8 @@ class userLibrary extends Component {
     this.props.history.push("/library")
   };
 
-
-
   render(){
-    const userBooks = this.props.selectedBooks.map((book) =>(
-        <div className='col-3 my-4' key={book.id}>
-          <div className='card'>
-            <div className='card-title'>
-              <a href={book.link}><h3>{book.title}</h3></a>
-            </div>
-            <div className='card-authors'>
-              <h3>{book.authors}</h3>
-            </div>
-            <div className='scroll-box'>
-              <p>{book.description}</p><br></br>
-            </div>
-            <button onClick={() => this.deleteBook(book)}>Remove this book.</button>
-          </div>
-        </div>
-    ));
+    const userBooks = this.props.selectedBooks.map(book => <Book key={ book.id } book={ book }/>);
 
     return(
       <div className="user-library">
