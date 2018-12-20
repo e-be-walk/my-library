@@ -26,7 +26,7 @@ class userLibrary extends Component {
 
 
 handleSort = () => {
-  let sortedBooks = [...this.props.selectedBooks].sort(function(a, b) {
+  let sortedBooks = this.props.selectedBooks.sort(function(a, b) {
     let titleA = a.title.toUpperCase();
     let titleB = b.title.toUpperCase();
     if (titleA < titleB) {
